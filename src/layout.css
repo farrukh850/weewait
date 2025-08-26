@@ -1,0 +1,10 @@
+.container{
+    max-width: 1760px !important;
+    margin: 0 auto;
+    width: 100%;
+    padding: 0 16px;
+}
+.parents-container{
+    max-width: 1168px;
+    margin: 0 auto;
+}

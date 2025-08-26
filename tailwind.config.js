@@ -23,13 +23,18 @@ module.exports = {
       fontSize: {
         '6xl': '64px',
         '7xl': '90px',
+        'textmed': '32px',
+        'mobile': '40px'
       },
       height: {
         '736': '736px',
         '240': '240px',
       },
+      width: {
+        '8xl': '1760px',
+      },
       screens: {
-        'xxl': '1600px',  // Add custom breakpoint for extra large screens
+        'xxl': '1600px',
       },
       borderRadius: {
         '32': '32px',

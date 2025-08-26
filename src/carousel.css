@@ -26,7 +26,7 @@
     height: 64px;
     background-color: #FFA9CF;
     border-radius: 50%;
-    background-image: url('/public/images/caret-right.svg');
+    background-image: url('../public/images/caret-right.svg');
     background-size: 20px;
     transform: rotate(180deg);
 }
@@ -35,7 +35,7 @@
     height: 64px;
     background-color: #FFA9CF;
     border-radius: 50%;
-    background-image: url('/public/images/caret-right.svg');
+    background-image: url('../public/images/caret-right.svg');
     background-size: 20px;
 }
 /* Also apply hover effect to the button itself */

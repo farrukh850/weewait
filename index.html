@@ -14,12 +14,13 @@
     <link rel="stylesheet" href="./src/carousel.css">
     <link rel="stylesheet" href="./src/scrollbar.css">
     <title>WeeWait</title>
-    <link href="./output.css" rel="stylesheet">
+    <link href="./src/input.css" rel="stylesheet">
+    <!-- Vite script will be injected here automatically during development -->
 </head>
 <body class="font-figtree">
     <header class="pt-4 pb-3 md:pt-10 md:pb-4 font-figtree">
         <div class="container px-4 flex items-center justify-between">
-            <a href="#"><img src="./public/images/logo.svg" width="135" alt="Wee Wait"></a>
+            <a href="#"><img src="/images/logo.svg" width="135" alt="Wee Wait"></a>
 
             <!-- Hamburger Menu Button (visible on mobile) -->
             <button id="hamburger-btn" class="md:hidden flex flex-col justify-center items-center w-10 h-10 space-y-1.5 z-30">
@@ -42,14 +43,14 @@
 
             <!-- Location and Login (hidden on mobile, shown in mobile menu) -->
             <div class="hidden md:flex gap-4 items-center">
-                <div class="flex items-center p-2 cursor-pointer rounded-full border border-primary_black/20 gap-2"><img src="./public/images/map-marker.svg" alt="Map Marker"><p class="text-base leading-5">163 Maplewood Drive, Ottawa</p><img src="./public/images/caret-down.svg" alt="Angle down" class="ml-3"></div>
+                <div class="flex items-center p-2 cursor-pointer rounded-full border border-primary_black/20 gap-2"><img src="/images/map-marker.svg" alt="Map Marker"><p class="text-base leading-5">163 Maplewood Drive, Ottawa</p><img src="/images/caret-down.svg" alt="Angle down" class="ml-3"></div>
                 <a href="#" class="py-3 h-12 flex items-center justify-center px-6 border text-lg leading-3 border-primary_black rounded-full transition-all duration-300 hover:bg-black hover:text-white hover:border-black font-rocaone">Log in</a>
             </div>
 
             <!-- Mobile menu location and login (visible inside mobile menu) -->
             <div id="mobile-menu-items" class="fixed bottom-0 left-0 right-0 top-0 bg-white flex flex-col items-center justify-center gap-8 z-10 transform translate-x-full transition-transform duration-300 ease-in-out">
                 <div class="flex flex-col items-center gap-8 w-full px-4">
-                    <div class="flex items-center p-2 cursor-pointer rounded-full border border-primary_black/20 gap-2 w-full justify-center"><img src="./public/images/map-marker.svg" alt="Map Marker"><p class="text-base leading-5">163 Maplewood Drive, Ottawa</p><img src="./public/images/caret-down.svg" alt="Angle down" class="ml-3"></div>
+                    <div class="flex items-center p-2 cursor-pointer rounded-full border border-primary_black/20 gap-2 w-full justify-center"><img src="/images/map-marker.svg" alt="Map Marker"><p class="text-base leading-5">163 Maplewood Drive, Ottawa</p><img src="/images/caret-down.svg" alt="Angle down" class="ml-3"></div>
                     <a href="#" class="py-3 w-full flex items-center justify-center px-6 border text-lg leading-6 border-primary_black rounded-full transition-all duration-300 hover:bg-black hover:text-accent hover:border-primary_black">Log in</a>
                 </div>
             </div>
@@ -63,7 +64,7 @@
                      <div class="flex flex-col justify-end">
                          <div class="flex flex-col gap-8">
                              <h1 class="text-mobile lg:text-6xl xxl:text-7xl font-figtree leading-120 lg:leading-80 xxl:leading-extra-loose font-semibold">A <b class="font-rocaone font-normal text-primary italic relative">Better Way
-                                 <img src="./public/images/banner-text-underline.svg" alt="Underline" class="absolute -bottom-2 lg:-bottom-5 left-0 right-0"></b>  to Manage Daycare Waitlists</h1>
+                                 <img src="/images/banner-text-underline.svg" alt="Underline" class="absolute -bottom-2 lg:-bottom-5 left-0 right-0"></b>  to Manage Daycare Waitlists</h1>
                              <p class="text-base leading-120 lg:text-xl lg:leading-tight">WeeWait makes it easy for parents to join the queue and for daycares to manage applications — all in one place.</p>
                              <div class="flex items-center gap-4">
                                  <a href="#" class="px-8 h-14 rounded-full text-lg lg:text-xl leading-5 bg-accent border transition-all duration-300 border-accent hover:bg-accent_hover font-rocaone flex items-center justify-center"><p>Get Started</p></a>
@@ -71,7 +72,7 @@
                              </div>
                          </div>
                          <div class="flex items-end gap-8 lg:gap-11 mt-12 lg:mt-36">
-                             <img src="./public/images/baby-hug.png" alt="Baby Hug" class="w-24">
+                             <img src="/images/baby-hug.png" alt="Baby Hug" class="w-24">
                              <div class="flex flex-col gap-2 pb-4">
                                  <p class="text-sm lg:text-lg leading-120 text-primary_black">"WeeWait made the whole daycare process so much easier. I applied in minutes and always knew our spot on the list."</p>
                                  <p class="text-sm italic leading-120 text-primary_black">— Emily, mom of a 4-year-old</p>
@@ -79,7 +80,7 @@
                          </div>
                      </div>
                      <div class="w-full h-full">
-                         <img src="./public/images/banner-right-image.png" alt="Banner Image" class="w-full h-full object-contain">
+                         <img src="/images/banner-right-image.png" alt="Banner Image" class="w-full h-full object-contain">
                      </div>
                  </div>
              </div>
@@ -92,30 +93,30 @@
                          <h2 class="text-textmed lg:text-6xl leading-110 font-semibold">Find <b class="font-rocaone text-primary font-normal">Childcare</b> Near Me</h2>
                          <p>Apply to childcare centers near you</p>
                      </div>
-                     <a href="#" class="hidden w-daycare_btn_width h-14 rounded-full font-rocaone border border-primary_black text-xl leading-6 lg:flex items-center gap-2 justify-center transition-all duration-300 hover:bg-primary_black hover:text-accent hover:border-black"><p>View all daycares</p><img src="./public/images/caret-right.svg" class="mt-1" alt="Caret Right"></a>
+                     <a href="#" class="hidden w-daycare_btn_width h-14 rounded-full font-rocaone border border-primary_black text-xl leading-6 lg:flex items-center gap-2 justify-center transition-all duration-300 hover:bg-primary_black hover:text-accent hover:border-black"><p>View all daycares</p><img src="/images/caret-right.svg" class="mt-1" alt="Caret Right"></a>
                  </div>
                  <div class="mt-12 relative daycare-carousel-container">
                     <div class="daycare-carousel">
                         <div class="carousel-slide">
                             <div class="flex flex-col rounded-32 bg-childcare_card">
                                 <div class="w-full h-240 overflow-hidden relative">
-                                    <img src="./public/images/daycare-img1.png" alt="Day Care Center" class="w-full h-full object-cover rounded-32">
+                                    <img src="/images/daycare-img1.png" alt="Day Care Center" class="w-full h-full object-cover rounded-32">
                                     <span class="w-20 h-10 flex items-center justify-center text-sm leading-110 text-white italic bg-accent_skyblue rounded-full absolute  top-4 left-4">Popular</span>
                                 </div>
                                 <div class="px-6 py-8 bg-grey flex flex-col gap-4">
                                     <h3 class="text-lg leading-120 text-primary_black font-semibold">KGV Outside School Hours Care</h3>
                                     <div class="flex items-center gap-2">
-                                        <img src="./public/images/pink-marker.svg" alt="Pink Map marker">
+                                        <img src="/images/pink-marker.svg" alt="Pink Map marker">
                                         <p class="text-sm leading-120 font-semibold italic">100m</p>
                                         <span class="w-1 h-1 rounded-full bg-black/10 block"></span>
                                         <p class="text-sm leading-120 text-primary_black opacity-80">15 Cumberland Street, The Rocks, NSW 2000</p>
                                     </div>
                                     <div class="flex items-center gap-2">
-                                        <img src="./public/images/dollar.svg" alt="Pink Map marker">
+                                        <img src="/images/dollar.svg" alt="Pink Map marker">
                                         <p class="text-sm leading-120 font-semibold italic">$50/day</p>
                                         <span class="w-1 h-1 rounded-full bg-black/10 block"></span>
                                         <p class="text-sm leading-120 text-primary_black opacity-80">Daycare Center</p>
-                                        <img src="./public/images/baby-icon.svg" alt="Pink Map marker">
+                                        <img src="/images/baby-icon.svg" alt="Pink Map marker">
                                         <p class="text-sm leading-120 text-primary_black opacity-80">After School Care</p>
                                     </div>
                                     <a href="#" class="px-8 lg:hidden h-12 rounded-full text-lg lg:text-xl leading-5 bg-accent border transition-all duration-300 border-accent hover:bg-accent_hover font-rocaone flex items-center justify-center"><p>Apply Now</p></a>
@@ -125,22 +126,22 @@
                         <div class="carousel-slide">
                             <div class="flex flex-col rounded-32 bg-childcare_card">
                                 <div class="w-full h-240 overflow-hidden relative">
-                                    <img src="./public/images/daycare-img2.png" alt="Day Care Center" class="w-full h-full object-cover rounded-32">
+                                    <img src="/images/daycare-img2.png" alt="Day Care Center" class="w-full h-full object-cover rounded-32">
                                 </div>
                                 <div class="px-6 py-8 bg-grey flex flex-col gap-4">
                                     <h3 class="text-lg leading-120 text-primary_black font-semibold">KGV Outside School Hours Care</h3>
                                     <div class="flex items-center gap-2">
-                                        <img src="./public/images/pink-marker.svg" alt="Pink Map marker">
+                                        <img src="/images/pink-marker.svg" alt="Pink Map marker">
                                         <p class="text-sm leading-120 font-semibold italic">100m</p>
                                         <span class="w-1 h-1 rounded-full bg-black/10 block"></span>
                                         <p class="text-sm leading-120 text-primary_black opacity-80">15 Cumberland Street, The Rocks, NSW 2000</p>
                                     </div>
                                     <div class="flex items-center gap-2">
-                                        <img src="./public/images/dollar.svg" alt="Pink Map marker">
+                                        <img src="/images/dollar.svg" alt="Pink Map marker">
                                         <p class="text-sm leading-120 font-semibold italic">$50/day</p>
                                         <span class="w-1 h-1 rounded-full bg-black/10 block"></span>
                                         <p class="text-sm leading-120 text-primary_black opacity-80">Daycare Center</p>
-                                        <img src="./public/images/baby-icon.svg" alt="Pink Map marker">
+                                        <img src="/images/baby-icon.svg" alt="Pink Map marker">
                                         <p class="text-sm leading-120 text-primary_black opacity-80">After School Care</p>
                                     </div>
                                     <a href="#" class="px-8 lg:hidden h-12 rounded-full text-lg lg:text-xl leading-5 bg-accent border transition-all duration-300 border-accent hover:bg-accent_hover font-rocaone flex items-center justify-center"><p>Apply Now</p></a>
@@ -150,22 +151,22 @@
                         <div class="carousel-slide">
                             <div class="flex flex-col rounded-32 bg-childcare_card">
                                 <div class="w-full h-240 overflow-hidden relative">
-                                    <img src="./public/images/daycare-img3.png" alt="Day Care Center" class="w-full h-full object-cover rounded-32">
+                                    <img src="/images/daycare-img3.png" alt="Day Care Center" class="w-full h-full object-cover rounded-32">
                                 </div>
                                 <div class="px-6 py-8 bg-grey flex flex-col gap-4">
                                     <h3 class="text-lg leading-120 text-primary_black font-semibold">KGV Outside School Hours Care</h3>
                                     <div class="flex items-center gap-2">
-                                        <img src="./public/images/pink-marker.svg" alt="Pink Map marker">
+                                        <img src="/images/pink-marker.svg" alt="Pink Map marker">
                                         <p class="text-sm leading-120 font-semibold italic">100m</p>
                                         <span class="w-1 h-1 rounded-full bg-black/10 block"></span>
                                         <p class="text-sm leading-120 text-primary_black opacity-80">15 Cumberland Street, The Rocks, NSW 2000</p>
                                     </div>
                                     <div class="flex items-center gap-2">
-                                        <img src="./public/images/dollar.svg" alt="Pink Map marker">
+                                        <img src="/images/dollar.svg" alt="Pink Map marker">
                                         <p class="text-sm leading-120 font-semibold italic">$50/day</p>
                                         <span class="w-1 h-1 rounded-full bg-black/10 block"></span>
                                         <p class="text-sm leading-120 text-primary_black opacity-80">Daycare Center</p>
-                                        <img src="./public/images/baby-icon.svg" alt="Pink Map marker">
+                                        <img src="/images/baby-icon.svg" alt="Pink Map marker">
                                         <p class="text-sm leading-120 text-primary_black opacity-80">After School Care</p>
                                     </div>
                                     <a href="#" class="px-8 lg:hidden h-12 rounded-full text-lg lg:text-xl leading-5 bg-accent border transition-all duration-300 border-accent hover:bg-accent_hover font-rocaone flex items-center justify-center"><p>Apply Now</p></a>
@@ -175,22 +176,22 @@
                         <div class="carousel-slide">
                             <div class="flex flex-col rounded-32 bg-childcare_card">
                                 <div class="w-full h-240 overflow-hidden relative">
-                                    <img src="./public/images/daycare-img4.png" alt="Day Care Center" class="w-full h-full object-cover rounded-32">
+                                    <img src="/images/daycare-img4.png" alt="Day Care Center" class="w-full h-full object-cover rounded-32">
                                 </div>
                                 <div class="px-6 py-8 bg-grey flex flex-col gap-4">
                                     <h3 class="text-lg leading-120 text-primary_black font-semibold">KGV Outside School Hours Care</h3>
                                     <div class="flex items-center gap-2">
-                                        <img src="./public/images/pink-marker.svg" alt="Pink Map marker">
+                                        <img src="/images/pink-marker.svg" alt="Pink Map marker">
                                         <p class="text-sm leading-120 font-semibold italic">100m</p>
                                         <span class="w-1 h-1 rounded-full bg-black/10 block"></span>
                                         <p class="text-sm leading-120 text-primary_black opacity-80">15 Cumberland Street, The Rocks, NSW 2000</p>
                                     </div>
                                     <div class="flex items-center gap-2">
-                                        <img src="./public/images/dollar.svg" alt="Pink Map marker">
+                                        <img src="/images/dollar.svg" alt="Pink Map marker">
                                         <p class="text-sm leading-120 font-semibold italic">$50/day</p>
                                         <span class="w-1 h-1 rounded-full bg-black/10 block"></span>
                                         <p class="text-sm leading-120 text-primary_black opacity-80">Daycare Center</p>
-                                        <img src="./public/images/baby-icon.svg" alt="Pink Map marker">
+                                        <img src="/images/baby-icon.svg" alt="Pink Map marker">
                                         <p class="text-sm leading-120 text-primary_black opacity-80">After School Care</p>
                                     </div>
                                     <a href="#" class="px-8 lg:hidden h-12 rounded-full text-lg lg:text-xl leading-5 bg-accent border transition-all duration-300 border-accent hover:bg-accent_hover font-rocaone flex items-center justify-center"><p>Apply Now</p></a>
@@ -200,22 +201,22 @@
                         <div class="carousel-slide">
                             <div class="flex flex-col rounded-32 bg-childcare_card">
                                 <div class="w-full h-240 overflow-hidden relative">
-                                    <img src="./public/images/daycare-img4.png" alt="Day Care Center" class="w-full h-full object-cover rounded-32">
+                                    <img src="/images/daycare-img4.png" alt="Day Care Center" class="w-full h-full object-cover rounded-32">
                                 </div>
                                 <div class="px-6 py-8 bg-grey flex flex-col gap-4">
                                     <h3 class="text-lg leading-120 text-primary_black font-semibold">KGV Outside School Hours Care</h3>
                                     <div class="flex items-center gap-2">
-                                        <img src="./public/images/pink-marker.svg" alt="Pink Map marker">
+                                        <img src="/images/pink-marker.svg" alt="Pink Map marker">
                                         <p class="text-sm leading-120 font-semibold italic">100m</p>
                                         <span class="w-1 h-1 rounded-full bg-black/10 block"></span>
                                         <p class="text-sm leading-120 text-primary_black opacity-80">15 Cumberland Street, The Rocks, NSW 2000</p>
                                     </div>
                                     <div class="flex items-center gap-2">
-                                        <img src="./public/images/dollar.svg" alt="Pink Map marker">
+                                        <img src="/images/dollar.svg" alt="Pink Map marker">
                                         <p class="text-sm leading-120 font-semibold italic">$50/day</p>
                                         <span class="w-1 h-1 rounded-full bg-black/10 block"></span>
                                         <p class="text-sm leading-120 text-primary_black opacity-80">Daycare Center</p>
-                                        <img src="./public/images/baby-icon.svg" alt="Pink Map marker">
+                                        <img src="/images/baby-icon.svg" alt="Pink Map marker">
                                         <p class="text-sm leading-120 text-primary_black opacity-80">After School Care</p>
                                     </div>
                                     <a href="#" class="px-8 lg:hidden h-12 rounded-full text-lg lg:text-xl leading-5 bg-accent border transition-all duration-300 border-accent hover:bg-accent_hover font-rocaone flex items-center justify-center"><p>Apply Now</p></a>
@@ -227,7 +228,7 @@
                     <div class="scrollbar-container daycare-scrollbar-container">
                         <div class="scrollbar-thumb daycare-scrollbar-thumb " style="position: relative; left: 0;"></div>
                     </div>
-                     <a href="#" class="flex lg:hidden w-full h-12 mt-8 font-rocaone rounded-full border border-primary_black text-xl leading-6 items-center gap-2 justify-center transition-all duration-300 hover:bg-primary_black hover:text-accent hover:border-black"><p>View all daycares</p><img src="./public/images/caret-right.svg" alt="Caret Right"></a>
+                     <a href="#" class="flex lg:hidden w-full h-12 mt-8 font-rocaone rounded-full border border-primary_black text-xl leading-6 items-center gap-2 justify-center transition-all duration-300 hover:bg-primary_black hover:text-accent hover:border-black"><p>View all daycares</p><img src="/images/caret-right.svg" alt="Caret Right"></a>
                 </div>
              </div>
          </section>
@@ -238,37 +239,37 @@
                      <h2 class="text-textmed lg:text-6xl leading-110 font-semibold text-center">Why Parents Choose <br> <b class="font-rocaone text-primary font-normal">WeeWait</b></h2>
                     <div class="grid grid-cols-12 gap-4 mt-12">
                         <div class="col-span-12 md:col-span-6 p-6 lg:p-10 rounded-32 bg-bg_grey relative overflow-hidden">
-                            <img src="./public/images/choose-icon1.svg" class="mb-8" alt="Choose Icon">
+                            <img src="/images/choose-icon1.svg" class="mb-8" alt="Choose Icon">
                             <h4 class="text-xl leading-120 text-primary_black mb-2 font-semibold">Save Time</h4>
                             <p class="text-lg leading-120 text-primary_black/80">Apply to multiple daycares at once - no repeated forms or calls.</p>
-                            <img src="./public/images/choose-bg1.svg" class="absolute top-0 left-0" alt="Cloud">
+                            <img src="/images/choose-bg1.svg" class="absolute top-0 left-0" alt="Cloud">
                         </div>
                         <div class="col-span-12 md:col-span-6 p-6 lg:p-10 rounded-32 bg-bg_grey relative overflow-hidden">
-                            <img src="./public/images/choose-icon2.svg" class="mb-8" alt="Choose Icon">
+                            <img src="/images/choose-icon2.svg" class="mb-8" alt="Choose Icon">
                             <h4 class="text-xl leading-120 text-primary_black mb-2 font-semibold">Stay Informed</h4>
                             <p class="text-lg leading-120 text-primary_black/80">Get real-time updates when your status changes
                                 or a spot opens.</p>
-                            <img src="./public/images/choose-bg2.svg" class="absolute top-0 right-0" alt="Cloud">
+                            <img src="/images/choose-bg2.svg" class="absolute top-0 right-0" alt="Cloud">
                         </div>
                         <div class="col-span-12 md:col-span-6 p-6 lg:p-10 rounded-32 bg-bg_grey relative overflow-hidden">
-                            <img src="./public/images/choose-icon3.svg" class="mb-8" alt="Choose Icon">
+                            <img src="/images/choose-icon3.svg" class="mb-8" alt="Choose Icon">
                             <h4 class="text-xl leading-120 text-primary_black mb-2 font-semibold">Reduce Stress</h4>
                             <p class="text-lg leading-120 text-primary_black/80">Get real-time updates when your status changes or a spot opens.</p>
-                            <img src="./public/images/choose-bg3.svg" class="absolute bottom-0 left-0" alt="Cloud">
+                            <img src="/images/choose-bg3.svg" class="absolute bottom-0 left-0" alt="Cloud">
                         </div>
                         <div class="col-span-12 md:col-span-6 p-6 lg:p-10 rounded-32 bg-bg_grey relative overflow-hidden">
-                            <img src="./public/images/choose-icon4.svg" class="mb-8" alt="Choose Icon">
+                            <img src="/images/choose-icon4.svg" class="mb-8" alt="Choose Icon">
                             <h4 class="text-xl leading-120 text-primary_black mb-2 font-semibold">All in One Place</h4>
                             <p class="text-lg leading-120 text-primary_black/80">Track your applications, invitations, and responses in one clear dashboard.</p>
-                            <img src="./public/images/choose-bg4.svg" class="absolute bottom-0 right-0" alt="Cloud">
+                            <img src="/images/choose-bg4.svg" class="absolute bottom-0 right-0" alt="Cloud">
                         </div>
                     </div>
                      <div class="absolute -top-32 lg:-top-16 right-0 ml-auto">
-                         <img src="./public/images/swan.svg" class="w-3/5 lg:w-full h-full ml-auto" alt="Swan">
+                         <img src="/images/swan.svg" class="w-3/5 lg:w-full h-full ml-auto" alt="Swan">
                      </div>
                  </div>
-                 <img src="./public/images/cloud-1.svg" class="w-36 lg:w-64 absolute -top-16 lg:top-2 left-0" alt="Cloud">
-                 <img src="./public/images/cloud-2.svg" class="hidden lg:block absolute top-36 right-0" alt="Cloud">
+                 <img src="/images/cloud-1.svg" class="w-36 lg:w-64 absolute -top-16 lg:top-2 left-0" alt="Cloud">
+                 <img src="/images/cloud-2.svg" class="hidden lg:block absolute top-36 right-0" alt="Cloud">
              </div>
          </section>
          <!-- I Got Off the WaitlistWithout the Chaos -->
@@ -281,17 +282,17 @@
                             <div class="flex flex-col single-feedback relative">
                                     <div class="flex items-center gap-6">
                                         <div class="reviewer-photo rounded-full block md:hidden">
-                                            <img src="./public/images/reviwer-image.png" alt="Reviewer Image" class="w-full h-full object-contain">
+                                            <img src="/images/reviwer-image.png" alt="Reviewer Image" class="w-full h-full object-contain">
                                         </div>
-                                        <img src="./public/images/stars.svg" class="w-40 md:w-60" alt="Stars">
+                                        <img src="/images/stars.svg" class="w-40 md:w-60" alt="Stars">
                                     </div>
                                     <h2 class="text-3xl lg:text-6xl lg:leading-120 text-white font-semibold mt-7 mb-4 lg:mb-10 w-full">I Got Off the Waitlist Without the Chaos</h2>
                                     <p class="text-xl leading-120 text-white/80 mb-6 lg:mb-8">"As a mom of three, I've been through it all — endless forms, phone calls, and waiting weeks just to hear back. WeeWait was a total game changer. I created one profile, selected a few daycares, and the platform took care of the rest. I didn't have to track anything manually — I got a notification the moment a spot opened up. It honestly made my life so much easier."</p>
                                     <i class="text-sm leading-120/80 italic text-white/80">— Emily, mom of a 4-year-old</i>
-                                    <img src="./public/images/bubbles.svg" class="absolute top-0 right-0 left-0 w-full" alt="Bubbles">
+                                    <img src="/images/bubbles.svg" class="absolute top-0 right-0 left-0 w-full" alt="Bubbles">
                                 </div>
                             <div class="hidden md:block reviewer-photo-big rounded-full">
-                                <img src="./public/images/reviwer-image.png" alt="Reviewer Image" class="w-full h-full object-contain">
+                                <img src="/images/reviwer-image.png" alt="Reviewer Image" class="w-full h-full object-contain">
                             </div>
                         </div>
                     </div>
@@ -301,17 +302,17 @@
                             <div class="flex flex-col single-feedback relative">
                                 <div class="flex items-center gap-6">
                                     <div class="reviewer-photo rounded-full block md:hidden">
-                                        <img src="./public/images/reviwer-image.png" alt="Reviewer Image" class="w-full h-full object-contain">
+                                        <img src="/images/reviwer-image.png" alt="Reviewer Image" class="w-full h-full object-contain">
                                     </div>
-                                    <img src="./public/images/stars.svg" class="w-40 md:w-60" alt="Stars">
+                                    <img src="/images/stars.svg" class="w-40 md:w-60" alt="Stars">
                                 </div>
                                 <h2 class="text-3xl lg:text-6xl lg:leading-120 text-white font-semibold mt-7 mb-4 lg:mb-10 w-full">I Got Off the Waitlist Without the Chaos</h2>
                                 <p class="text-xl leading-120 text-white/80 mb-6 lg:mb-8">"As a mom of three, I've been through it all — endless forms, phone calls, and waiting weeks just to hear back. WeeWait was a total game changer. I created one profile, selected a few daycares, and the platform took care of the rest. I didn't have to track anything manually — I got a notification the moment a spot opened up. It honestly made my life so much easier."</p>
                                 <i class="text-sm leading-120/80 italic text-white/80">— Emily, mom of a 4-year-old</i>
-                                <img src="./public/images/bubbles.svg" class="absolute top-0 right-0 left-0 w-full" alt="Bubbles">
+                                <img src="/images/bubbles.svg" class="absolute top-0 right-0 left-0 w-full" alt="Bubbles">
                             </div>
                             <div class="hidden md:block reviewer-photo-big rounded-full">
-                                <img src="./public/images/reviwer-image.png" alt="Reviewer Image" class="w-full h-full object-contain">
+                                <img src="/images/reviwer-image.png" alt="Reviewer Image" class="w-full h-full object-contain">
                             </div>
                         </div>
                     </div>
@@ -347,12 +348,12 @@
                     </button>
                 </div>
             </div>
-             <img src="./public/images/waves.svg" class="absolute top-0 right-0 left-0 w-full" alt="Waves">
+             <img src="/images/waves.svg" class="absolute top-0 right-0 left-0 w-full" alt="Waves">
              <div class="absolute -top-4 lg:-top-20 right-0 left-0 w-full">
-                 <img src="./public/images/top-wave.svg" class="w-full" alt="Wave">
+                 <img src="/images/top-wave.svg" class="w-full" alt="Wave">
              </div>
              <div class="absolute -bottom-4 lg:-bottom-20 right-0 left-0 w-full">
-                 <img src="./public/images/bot-wave.svg" class="w-full" alt="Wave">
+                 <img src="/images/bot-wave.svg" class="w-full" alt="Wave">
              </div>
          </section>
          <!-- Find Subsidized Daycare near me -->
@@ -363,30 +364,30 @@
                          <h2 class="text-textmed lg:text-6xl leading-110 font-semibold">Find Subsidized <b class="font-rocaone text-primary font-normal">Daycare</b> Near Me</h2>
                          <p>Apply to childcare centers near you</p>
                      </div>
-                     <a href="#" class="hidden w-daycare_btn_width h-14 rounded-full font-rocaone border border-primary_black text-xl leading-6 lg:flex items-center gap-2 justify-center transition-all duration-300 hover:bg-primary_black hover:text-accent hover:border-black"><p>View all daycares</p><img src="./public/images/caret-right.svg" class="mt-1" alt="Caret Right"></a>
+                     <a href="#" class="hidden w-daycare_btn_width h-14 rounded-full font-rocaone border border-primary_black text-xl leading-6 lg:flex items-center gap-2 justify-center transition-all duration-300 hover:bg-primary_black hover:text-accent hover:border-black"><p>View all daycares</p><img src="/images/caret-right.svg" class="mt-1" alt="Caret Right"></a>
                  </div>
                  <div class="mt-12 relative daycare-carousel-container">
                      <div class="daycare-carousel">
                          <div class="carousel-slide">
                              <div class="flex flex-col rounded-32 bg-childcare_card">
                                  <div class="w-full h-240 overflow-hidden relative">
-                                     <img src="./public/images/daycare-img1.png" alt="Day Care Center" class="w-full h-full object-cover rounded-32">
+                                     <img src="/images/daycare-img1.png" alt="Day Care Center" class="w-full h-full object-cover rounded-32">
                                      <span class="w-20 h-10 flex items-center justify-center text-sm leading-110 text-white italic bg-accent_skyblue rounded-full absolute  top-4 left-4">Popular</span>
                                  </div>
                                  <div class="px-6 py-8 bg-grey flex flex-col gap-4">
                                      <h3 class="text-lg leading-120 text-primary_black font-semibold">KGV Outside School Hours Care</h3>
                                      <div class="flex items-center gap-2">
-                                         <img src="./public/images/pink-marker.svg" alt="Pink Map marker">
+                                         <img src="/images/pink-marker.svg" alt="Pink Map marker">
                                          <p class="text-sm leading-120 font-semibold italic">100m</p>
                                          <span class="w-1 h-1 rounded-full bg-black/10 block"></span>
                                          <p class="text-sm leading-120 text-primary_black opacity-80">15 Cumberland Street, The Rocks, NSW 2000</p>
                                      </div>
                                      <div class="flex items-center gap-2">
-                                         <img src="./public/images/dollar.svg" alt="Pink Map marker">
+                                         <img src="/images/dollar.svg" alt="Pink Map marker">
                                          <p class="text-sm leading-120 font-semibold italic">$50/day</p>
                                          <span class="w-1 h-1 rounded-full bg-black/10 block"></span>
                                          <p class="text-sm leading-120 text-primary_black opacity-80">Daycare Center</p>
-                                         <img src="./public/images/baby-icon.svg" alt="Pink Map marker">
+                                         <img src="/images/baby-icon.svg" alt="Pink Map marker">
                                          <p class="text-sm leading-120 text-primary_black opacity-80">After School Care</p>
                                      </div>
                                      <a href="#" class="px-8 lg:hidden h-12 rounded-full text-lg lg:text-xl leading-5 bg-accent border transition-all duration-300 border-accent hover:bg-accent_hover font-rocaone flex items-center justify-center"><p>Apply Now</p></a>
@@ -396,22 +397,22 @@
                          <div class="carousel-slide">
                              <div class="flex flex-col rounded-32 bg-childcare_card">
                                  <div class="w-full h-240 overflow-hidden relative">
-                                     <img src="./public/images/daycare-img2.png" alt="Day Care Center" class="w-full h-full object-cover rounded-32">
+                                     <img src="/images/daycare-img2.png" alt="Day Care Center" class="w-full h-full object-cover rounded-32">
                                  </div>
                                  <div class="px-6 py-8 bg-grey flex flex-col gap-4">
                                      <h3 class="text-lg leading-120 text-primary_black font-semibold">KGV Outside School Hours Care</h3>
                                      <div class="flex items-center gap-2">
-                                         <img src="./public/images/pink-marker.svg" alt="Pink Map marker">
+                                         <img src="/images/pink-marker.svg" alt="Pink Map marker">
                                          <p class="text-sm leading-120 font-semibold italic">100m</p>
                                          <span class="w-1 h-1 rounded-full bg-black/10 block"></span>
                                          <p class="text-sm leading-120 text-primary_black opacity-80">15 Cumberland Street, The Rocks, NSW 2000</p>
                                      </div>
                                      <div class="flex items-center gap-2">
-                                         <img src="./public/images/dollar.svg" alt="Pink Map marker">
+                                         <img src="/images/dollar.svg" alt="Pink Map marker">
                                          <p class="text-sm leading-120 font-semibold italic">$50/day</p>
                                          <span class="w-1 h-1 rounded-full bg-black/10 block"></span>
                                          <p class="text-sm leading-120 text-primary_black opacity-80">Daycare Center</p>
-                                         <img src="./public/images/baby-icon.svg" alt="Pink Map marker">
+                                         <img src="/images/baby-icon.svg" alt="Pink Map marker">
                                          <p class="text-sm leading-120 text-primary_black opacity-80">After School Care</p>
                                      </div>
                                      <a href="#" class="px-8 lg:hidden h-12 rounded-full text-lg lg:text-xl leading-5 bg-accent border transition-all duration-300 border-accent hover:bg-accent_hover font-rocaone flex items-center justify-center"><p>Apply Now</p></a>
@@ -421,22 +422,22 @@
                          <div class="carousel-slide">
                              <div class="flex flex-col rounded-32 bg-childcare_card">
                                  <div class="w-full h-240 overflow-hidden relative">
-                                     <img src="./public/images/daycare-img3.png" alt="Day Care Center" class="w-full h-full object-cover rounded-32">
+                                     <img src="/images/daycare-img3.png" alt="Day Care Center" class="w-full h-full object-cover rounded-32">
                                  </div>
                                  <div class="px-6 py-8 bg-grey flex flex-col gap-4">
                                      <h3 class="text-lg leading-120 text-primary_black font-semibold">KGV Outside School Hours Care</h3>
                                      <div class="flex items-center gap-2">
-                                         <img src="./public/images/pink-marker.svg" alt="Pink Map marker">
+                                         <img src="/images/pink-marker.svg" alt="Pink Map marker">
                                          <p class="text-sm leading-120 font-semibold italic">100m</p>
                                          <span class="w-1 h-1 rounded-full bg-black/10 block"></span>
                                          <p class="text-sm leading-120 text-primary_black opacity-80">15 Cumberland Street, The Rocks, NSW 2000</p>
                                      </div>
                                      <div class="flex items-center gap-2">
-                                         <img src="./public/images/dollar.svg" alt="Pink Map marker">
+                                         <img src="/images/dollar.svg" alt="Pink Map marker">
                                          <p class="text-sm leading-120 font-semibold italic">$50/day</p>
                                          <span class="w-1 h-1 rounded-full bg-black/10 block"></span>
                                          <p class="text-sm leading-120 text-primary_black opacity-80">Daycare Center</p>
-                                         <img src="./public/images/baby-icon.svg" alt="Pink Map marker">
+                                         <img src="/images/baby-icon.svg" alt="Pink Map marker">
                                          <p class="text-sm leading-120 text-primary_black opacity-80">After School Care</p>
                                      </div>
                                      <a href="#" class="px-8 lg:hidden h-12 rounded-full text-lg lg:text-xl leading-5 bg-accent border transition-all duration-300 border-accent hover:bg-accent_hover font-rocaone flex items-center justify-center"><p>Apply Now</p></a>
@@ -446,22 +447,22 @@
                          <div class="carousel-slide">
                              <div class="flex flex-col rounded-32 bg-childcare_card">
                                  <div class="w-full h-240 overflow-hidden relative">
-                                     <img src="./public/images/daycare-img4.png" alt="Day Care Center" class="w-full h-full object-cover rounded-32">
+                                     <img src="/images/daycare-img4.png" alt="Day Care Center" class="w-full h-full object-cover rounded-32">
                                  </div>
                                  <div class="px-6 py-8 bg-grey flex flex-col gap-4">
                                      <h3 class="text-lg leading-120 text-primary_black font-semibold">KGV Outside School Hours Care</h3>
                                      <div class="flex items-center gap-2">
-                                         <img src="./public/images/pink-marker.svg" alt="Pink Map marker">
+                                         <img src="/images/pink-marker.svg" alt="Pink Map marker">
                                          <p class="text-sm leading-120 font-semibold italic">100m</p>
                                          <span class="w-1 h-1 rounded-full bg-black/10 block"></span>
                                          <p class="text-sm leading-120 text-primary_black opacity-80">15 Cumberland Street, The Rocks, NSW 2000</p>
                                      </div>
                                      <div class="flex items-center gap-2">
-                                         <img src="./public/images/dollar.svg" alt="Pink Map marker">
+                                         <img src="/images/dollar.svg" alt="Pink Map marker">
                                          <p class="text-sm leading-120 font-semibold italic">$50/day</p>
                                          <span class="w-1 h-1 rounded-full bg-black/10 block"></span>
                                          <p class="text-sm leading-120 text-primary_black opacity-80">Daycare Center</p>
-                                         <img src="./public/images/baby-icon.svg" alt="Pink Map marker">
+                                         <img src="/images/baby-icon.svg" alt="Pink Map marker">
                                          <p class="text-sm leading-120 text-primary_black opacity-80">After School Care</p>
                                      </div>
                                      <a href="#" class="px-8 lg:hidden h-12 rounded-full text-lg lg:text-xl leading-5 bg-accent border transition-all duration-300 border-accent hover:bg-accent_hover font-rocaone flex items-center justify-center"><p>Apply Now</p></a>
@@ -471,22 +472,22 @@
                          <div class="carousel-slide">
                              <div class="flex flex-col rounded-32 bg-childcare_card">
                                  <div class="w-full h-240 overflow-hidden relative">
-                                     <img src="./public/images/daycare-img4.png" alt="Day Care Center" class="w-full h-full object-cover rounded-32">
+                                     <img src="/images/daycare-img4.png" alt="Day Care Center" class="w-full h-full object-cover rounded-32">
                                  </div>
                                  <div class="px-6 py-8 bg-grey flex flex-col gap-4">
                                      <h3 class="text-lg leading-120 text-primary_black font-semibold">KGV Outside School Hours Care</h3>
                                      <div class="flex items-center gap-2">
-                                         <img src="./public/images/pink-marker.svg" alt="Pink Map marker">
+                                         <img src="/images/pink-marker.svg" alt="Pink Map marker">
                                          <p class="text-sm leading-120 font-semibold italic">100m</p>
                                          <span class="w-1 h-1 rounded-full bg-black/10 block"></span>
                                          <p class="text-sm leading-120 text-primary_black opacity-80">15 Cumberland Street, The Rocks, NSW 2000</p>
                                      </div>
                                      <div class="flex items-center gap-2">
-                                         <img src="./public/images/dollar.svg" alt="Pink Map marker">
+                                         <img src="/images/dollar.svg" alt="Pink Map marker">
                                          <p class="text-sm leading-120 font-semibold italic">$50/day</p>
                                          <span class="w-1 h-1 rounded-full bg-black/10 block"></span>
                                          <p class="text-sm leading-120 text-primary_black opacity-80">Daycare Center</p>
-                                         <img src="./public/images/baby-icon.svg" alt="Pink Map marker">
+                                         <img src="/images/baby-icon.svg" alt="Pink Map marker">
                                          <p class="text-sm leading-120 text-primary_black opacity-80">After School Care</p>
                                      </div>
                                      <a href="#" class="px-8 lg:hidden h-12 rounded-full text-lg lg:text-xl leading-5 bg-accent border transition-all duration-300 border-accent hover:bg-accent_hover font-rocaone flex items-center justify-center"><p>Apply Now</p></a>
@@ -498,7 +499,7 @@
                      <div class="scrollbar-container daycare-scrollbar-container">
                          <div class="scrollbar-thumb daycare-scrollbar-thumb " style="position: relative; left: 0;"></div>
                      </div>
-                     <a href="#" class="flex lg:hidden w-full h-12 mt-8 font-rocaone rounded-full border border-primary_black text-xl leading-6 items-center gap-2 justify-center transition-all duration-300 hover:bg-primary_black hover:text-accent hover:border-black"><p>View all daycares</p><img src="./public/images/caret-right.svg" alt="Caret Right"></a>
+                     <a href="#" class="flex lg:hidden w-full h-12 mt-8 font-rocaone rounded-full border border-primary_black text-xl leading-6 items-center gap-2 justify-center transition-all duration-300 hover:bg-primary_black hover:text-accent hover:border-black"><p>View all daycares</p><img src="/images/caret-right.svg" alt="Caret Right"></a>
                  </div>
              </div>
          </section>
@@ -511,11 +512,11 @@
                      <a href="#" class="w-full lg:w-[167px] h-14 flex items-center justify-center font-rocaone text-xl leading-6 rounded-full bg-accent hover:bg-accent_hover transition-all duration-300"><p>Contact us</p></a>
                  </div>
                  <div class="relative xxl:w-800 lg:w-600 lg:pr-28 xxl:pr-0 flex-[40%]">
-                     <img src="./public/images/blue-hands.svg" class="absolute hidden lg:block top-1/2 -left-20" alt="Blue Hands">
-                     <img src="./public/images/blue-splash.svg" class="absolute hidden lg:block -bottom-20 -left-28" alt="Blue Splash">
-                     <img src="./public/images/calendar.svg" class="relative z-10 w-full object-contain" alt="Calendar">
-                     <img src="./public/images/pink-hands.svg" class="absolute hidden lg:block top-1/2 xxl:-right-20 right-10" alt="Blue Hands">
-                     <img src="./public/images/pink-splash.svg" class="absolute hidden lg:block -top-20 xxl:-right-28 right-10" alt="Pink Splash">
+                     <img src="/images/blue-hands.svg" class="absolute hidden lg:block top-1/2 -left-20" alt="Blue Hands">
+                     <img src="/images/blue-splash.svg" class="absolute hidden lg:block -bottom-20 -left-28" alt="Blue Splash">
+                     <img src="/images/calendar.svg" class="relative z-10 w-full object-contain" alt="Calendar">
+                     <img src="/images/pink-hands.svg" class="absolute hidden lg:block top-1/2 xxl:-right-20 right-10" alt="Blue Hands">
+                     <img src="/images/pink-splash.svg" class="absolute hidden lg:block -top-20 xxl:-right-28 right-10" alt="Pink Splash">
                  </div>
              </div>
          </section>
@@ -523,7 +524,7 @@
          <section class="lg:pt-32 pb-30">
              <div class="container xxl:px-0 flex items-center gap-6 lg:gap-36 mb-16 flex-col lg:flex-row justify-between">
                 <div class="flex-[60%]">
-                    <img src="./public/images/signup-img.svg" alt="Signup Image">
+                    <img src="/images/signup-img.svg" alt="Signup Image">
                 </div>
                  <div class="flex flex-col items-start flex-[40%]">
                      <h2 class="text-2xl lg:text-5xl leading-120 font-semibold mb-6">Create Your Profile</h2>
@@ -533,7 +534,7 @@
              </div>
              <div class="container xxl:px-0 flex items-center gap-6 lg:gap-36 mb-16 flex-col lg:flex-row">
                  <div class="flex-[60%]">
-                     <img src="./public/images/select-daycares-img.svg" alt="Signup Image">
+                     <img src="/images/select-daycares-img.svg" alt="Signup Image">
                  </div>
                  <div class="flex flex-col items-start flex-[40%]">
                      <h2 class="text-2xl lg:text-5xl leading-120 font-semibold mb-6">Select Daycares</h2>
@@ -543,7 +544,7 @@
              </div>
              <div class="container xxl:px-0 flex items-center gap-6 lg:gap-36 mb-16 flex-col lg:flex-row">
                  <div class="flex-[60%]">
-                     <img src="./public/images/good-news.svg" alt="Good News Image">
+                     <img src="/images/good-news.svg" alt="Good News Image">
                  </div>
                  <div class="flex flex-col items-start flex-[40%]">
                      <h2 class="text-2xl lg:text-5xl leading-120 font-semibold mb-6">Be Notified of Openings</h2>
@@ -560,7 +561,7 @@
                 <div class="flex flex-col gap-4">
                     <a href="#" class="text-3xl text-primary_black font-rocaone">WeeWait</a>
                     <div class="flex items-center gap-1">
-                        <img src="./public/images/heart.svg" alt="Heart">
+                        <img src="/images/heart.svg" alt="Heart">
                         <p class="text-lg leading-120">Built by parents, for parents</p>
                     </div>
                 </div>
@@ -573,9 +574,9 @@
                     <li><a href="#" class="text-primary_black text-lg leading-6 text-primary_black/80">Contact us</a></li>
                 </ul>
                 <div class="flex items-center lg:justify-between gap-2">
-                    <a href="#"><img src="./public/images/insta.svg" alt="Instagram"></a>
-                    <a href="#"><img src="./public/images/fb.svg" alt="Facebook"></a>
-                    <a href="#"><img src="./public/images/linkedin.svg" alt="Linkedin"></a>
+                    <a href="#"><img src="/images/insta.svg" alt="Instagram"></a>
+                    <a href="#"><img src="/images/fb.svg" alt="Facebook"></a>
+                    <a href="#"><img src="/images/linkedin.svg" alt="Linkedin"></a>
                 </div>
             </div>
             <hr class="my-6 bg-black/10">
@@ -587,13 +588,13 @@
                 </div>
                 <div class="flex items-start gap-2">
                     <p class="text-base leading-120 text-primary_black">Crafted by</p>
-                    <img src="./public/images/u1core.svg" alt="U1Core Logo">
+                    <img src="/images/u1core.svg" alt="U1Core Logo">
                 </div>
             </div>
         </div>
     </footer>
    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-   <script src="./src/main.js"></script>
+   <script type="module" src="./src/main.js"></script>
 </body>
 </html>

@@ -1,5 +1,8 @@
-// Wait for jQuery to load first
-$(document).ready(function() {
+// Import styles to be processed by Vite
+import './input.css';
+
+// Wait for jQuery to load first (jQuery is loaded from CDN in the HTML)
+document.addEventListener('DOMContentLoaded', function() {
   console.log('jQuery loaded and document ready');
 
   // Initialize Daycare Carousel
@@ -49,208 +52,104 @@ $(document).ready(function() {
     const currentSlide = $carousel.slick('slickCurrentSlide');
     const slidesToShow = $carousel.slick('getSlick').options.slidesToShow;
 
-    // Check if we're at the first slide (hide prev arrow)
-    if (currentSlide === 0) {
-      $('.slick-prev').css('display', 'none');
+    // Hide prev arrow on first slide, show otherwise
+    if(currentSlide === 0) {
+      $('.slick-prev').addClass('hidden');
     } else {
-      $('.slick-prev').css('display', 'block');
+      $('.slick-prev').removeClass('hidden');
     }
 
-    // Check if we're at the last set of slides (hide next arrow)
-    if (currentSlide >= slideCount - slidesToShow) {
-      $('.slick-next').css('display', 'none');
+    // Hide next arrow on last slide, show otherwise
+    if(currentSlide >= slideCount - slidesToShow) {
+      $('.slick-next').addClass('hidden');
     } else {
-      $('.slick-next').css('display', 'block');
-    }
-
-    // Update scrollbar position
-    updateScrollbar();
-  }
-
-  // Initialize scrollbar for daycare carousel
-  function initScrollbar() {
-    const $scrollbarContainer = $('.daycare-scrollbar-container');
-    const $scrollbarThumb = $('.daycare-scrollbar-thumb');
-    const slideCount = $carousel.slick('getSlick').slideCount;
-    const slidesToShow = $carousel.slick('getSlick').options.slidesToShow;
-
-    // Calculate thumb width as percentage
-    const thumbWidth = (slidesToShow / slideCount) * 100;
-    $scrollbarThumb.css('width', thumbWidth + '%');
-
-    // Make scrollbar draggable
-    let isDragging = false;
-    let startX, startLeft;
-
-    $scrollbarThumb.mousedown(function(e) {
-      isDragging = true;
-      $(this).addClass('dragging');
-      startX = e.pageX;
-      startLeft = parseInt($(this).css('left'));
-      e.preventDefault();
-    });
-
-    $(document).mousemove(function(e) {
-      if (!isDragging) return;
-
-      const containerWidth = $scrollbarContainer.width();
-      const thumbWidth = $scrollbarThumb.width();
-      const maxLeft = containerWidth - thumbWidth;
-
-      let newLeft = startLeft + (e.pageX - startX);
-      // Constrain within bounds
-      newLeft = Math.max(0, Math.min(newLeft, maxLeft));
-
-      // Move the thumb
-      $scrollbarThumb.css('left', newLeft + 'px');
-
-      // Calculate and go to the corresponding slide
-      const slideRatio = newLeft / maxLeft;
-      const targetSlide = Math.round(slideRatio * (slideCount - slidesToShow));
-      $carousel.slick('slickGoTo', targetSlide, true);
-    });
-
-    $(document).mouseup(function() {
-      isDragging = false;
-      $scrollbarThumb.removeClass('dragging');
-    });
-
-    // Handle click on scrollbar container (jump to position)
-    $scrollbarContainer.click(function(e) {
-      if ($(e.target).hasClass('daycare-scrollbar-thumb')) return;
-
-      const containerWidth = $scrollbarContainer.width();
-      const thumbWidth = $scrollbarThumb.width();
-      const maxLeft = containerWidth - thumbWidth;
-      const clickPosition = e.pageX - $scrollbarContainer.offset().left;
-
-      // Calculate position ratio (accounting for thumb width)
-      let newLeft = clickPosition - (thumbWidth / 2);
-      newLeft = Math.max(0, Math.min(newLeft, maxLeft));
-
-      // Calculate and go to the corresponding slide
-      const slideRatio = newLeft / maxLeft;
-      const targetSlide = Math.round(slideRatio * (slideCount - slidesToShow));
-      $carousel.slick('slickGoTo', targetSlide, true);
-    });
-  }
-
-  // Update scrollbar position based on current slide
-  function updateScrollbar() {
-    const $scrollbarContainer = $('.daycare-scrollbar-container');
-    const $scrollbarThumb = $('.daycare-scrollbar-thumb');
-    const slideCount = $carousel.slick('getSlick').slideCount;
-    const slidesToShow = $carousel.slick('getSlick').options.slidesToShow;
-    const currentSlide = $carousel.slick('slickCurrentSlide');
-
-    // Only update if elements exist
-    if ($scrollbarContainer.length && $scrollbarThumb.length) {
-      const containerWidth = $scrollbarContainer.width();
-      const thumbWidth = $scrollbarThumb.width();
-      const maxLeft = containerWidth - thumbWidth;
-
-      // Calculate position based on current slide
-      const slideProgress = currentSlide / (slideCount - slidesToShow);
-      const newLeft = slideProgress * maxLeft;
-
-      $scrollbarThumb.css('left', newLeft + 'px');
+      $('.slick-next').removeClass('hidden');
     }
   }
 
-  // Run on initialization
+  // Call initially to set correct state
   updateArrows();
 
-  // Initialize scrollbar after a short delay to ensure carousel is fully rendered
-  setTimeout(initScrollbar, 100);
-
-  // Update arrows when the slide changes
+  // Update arrows when slide changes
   $carousel.on('afterChange', function() {
     updateArrows();
   });
 
-  // Update arrows when window resizes (as visible slides count might change)
-  $(window).on('resize', function() {
-    setTimeout(function() {
-      updateArrows();
-      initScrollbar(); // Reinitialize scrollbar on resize
-    }, 300); // Small delay to allow responsive settings to apply
+  // Handle mobile scrollbar functionality
+  const $carouselSlides = $('.carousel-slide');
+  const totalSlides = $carouselSlides.length;
+  const $scrollbarThumb = $('.daycare-scrollbar-thumb');
+
+  $carousel.on('afterChange', function(event, slick, currentSlide) {
+    // Calculate the thumb position based on current slide
+    const slidePercentage = currentSlide / (totalSlides - slick.options.slidesToShow);
+    const maxThumbPosition = $('.daycare-scrollbar-container').width() - $scrollbarThumb.width();
+    const newPosition = slidePercentage * maxThumbPosition;
+
+    // Update thumb position
+    $scrollbarThumb.css('left', newPosition + 'px');
   });
 
   // Initialize Testimonial Slider
-  $('.testimonial-slider').slick({
+  const $testimonialSlider = $('.testimonial-slider');
+
+  $testimonialSlider.slick({
     slidesToShow: 1,
     slidesToScroll: 1,
     arrows: true,
     dots: false,
-    infinite: true,
-    speed: 500,
-    cssEase: 'linear',
     prevArrow: $('.testimonial-prev'),
     nextArrow: $('.testimonial-next'),
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 1
-        }
-      },
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 1
-        }
-      }
-    ]
   });
 
-  // Add similar scrollbar for testimonial slider
-  const $testimonialSlider = $('.testimonial-slider');
-  const $testimonialScrollContainer = $('.testimonial-scrollbar-container');
-  const $testimonialScrollThumb = $('.testimonial-scrollbar-thumb');
+  // Hide prev arrow by default on testimonial slider
+  $('.testimonial-prev').addClass('hidden');
 
-  if ($testimonialSlider.length && $testimonialScrollContainer.length) {
+  // Update testimonial arrows
+  function updateTestimonialArrows() {
     const slideCount = $testimonialSlider.slick('getSlick').slideCount;
+    const currentSlide = $testimonialSlider.slick('slickCurrentSlide');
 
-    // Set initial thumb width
-    $testimonialScrollThumb.css('width', (1 / slideCount * 100) + '%');
+    // Hide prev arrow on first slide, show otherwise
+    if(currentSlide === 0) {
+      $('.testimonial-prev').addClass('hidden');
+    } else {
+      $('.testimonial-prev').removeClass('hidden');
+    }
 
-    // Update thumb position on slide change
-    $testimonialSlider.on('afterChange', function(event, slick, currentSlide) {
-      const containerWidth = $testimonialScrollContainer.width();
-      const thumbWidth = $testimonialScrollThumb.width();
-      const maxLeft = containerWidth - thumbWidth;
-      const slideProgress = currentSlide / (slideCount - 1);
-      const newLeft = slideProgress * maxLeft;
-
-      $testimonialScrollThumb.css('left', newLeft + 'px');
-    });
-
-    // Handle scrollbar clicks
-    $testimonialScrollContainer.click(function(e) {
-      if ($(e.target).hasClass('testimonial-scrollbar-thumb')) return;
-
-      const containerWidth = $testimonialScrollContainer.width();
-      const clickPosition = e.pageX - $testimonialScrollContainer.offset().left;
-      const slideRatio = clickPosition / containerWidth;
-      const targetSlide = Math.round(slideRatio * (slideCount - 1));
-
-      $testimonialSlider.slick('slickGoTo', targetSlide);
-    });
+    // Hide next arrow on last slide, show otherwise
+    if(currentSlide >= slideCount - 1) {
+      $('.testimonial-next').addClass('hidden');
+    } else {
+      $('.testimonial-next').removeClass('hidden');
+    }
   }
 
-  // Hamburger menu toggle
-  $('#hamburger-btn').click(function() {
-    $(this).toggleClass('active');
-    $('#main-nav').toggleClass('translate-x-full');
-    $('#mobile-menu-items').toggleClass('translate-x-full');
+  // Call initially to set correct state
+  updateTestimonialArrows();
 
-    // Toggle hamburger icon animation
-    if ($(this).hasClass('active')) {
-      $(this).find('span:nth-child(1)').addClass('rotate-45 translate-y-2');
-      $(this).find('span:nth-child(2)').addClass('opacity-0');
-      $(this).find('span:nth-child(3)').addClass('-rotate-45 -translate-y-2');
+  // Update arrows when slide changes
+  $testimonialSlider.on('afterChange', function() {
+    updateTestimonialArrows();
+  });
+
+  // Mobile Menu Toggle
+  const hamburgerBtn = document.getElementById('hamburger-btn');
+  const mainNav = document.getElementById('main-nav');
+  const mobileMenuItems = document.getElementById('mobile-menu-items');
+
+  hamburgerBtn.addEventListener('click', function() {
+    this.classList.toggle('active');
+
+    // Toggle the transform class to show/hide the navigation
+    mainNav.classList.toggle('translate-x-full');
+    mobileMenuItems.classList.toggle('translate-x-full');
+
+    // Add 'active' class to hamburger button for styling if needed
+    if (mainNav.classList.contains('translate-x-full')) {
+      document.body.style.overflow = '';
     } else {
-      $(this).find('span').removeClass('rotate-45 translate-y-2 opacity-0 -rotate-45 -translate-y-2');
+      document.body.style.overflow = 'hidden'; // Prevent scrolling when menu is open
     }
   });
 });

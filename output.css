@@ -97,6 +97,7 @@
 .testimonial-prev,
 .testimonial-next {
   transition: all 0.3s ease;
+  background-color: #FEEA94;
 }
 
 .testimonial-prev svg path,
@@ -121,6 +122,29 @@
 .parents-container{
   max-width: 1168px;
   margin: 0 auto;
+}
+
+.testimonials-container{
+  max-width: 1536px;
+  margin: 0 auto;
+}
+
+.single-feedback{
+  max-width: 724px;
+}
+
+.reviewer-photo{
+  width: 120px;
+  height: 120px;
+}
+
+.reviewer-photo-big{
+  width: 500px;
+  height: 500px;
+}
+
+.paragraph_width{
+  max-width: 576px;
 }
 
 *, ::before, ::after {
@@ -919,14 +943,6 @@ video {
   height: 240px;
 }
 
-.h-\[120px\] {
-  height: 120px;
-}
-
-.h-\[500px\] {
-  height: 500px;
-}
-
 .h-full {
   height: 100%;
 }
@@ -947,60 +963,32 @@ video {
   width: 5rem;
 }
 
+.w-24 {
+  width: 6rem;
+}
+
+.w-3\/5 {
+  width: 60%;
+}
+
+.w-36 {
+  width: 9rem;
+}
+
+.w-40 {
+  width: 10rem;
+}
+
 .w-6 {
   width: 1.5rem;
 }
 
-.w-\[103px\] {
-  width: 103px;
-}
-
-.w-\[120px\] {
-  width: 120px;
-}
-
-.w-\[138px\] {
-  width: 138px;
-}
-
-.w-\[160px\] {
-  width: 160px;
-}
-
-.w-\[169px\] {
-  width: 169px;
-}
-
-.w-\[248px\] {
+.w-daycare_btn_width {
   width: 248px;
-}
-
-.w-\[500px\] {
-  width: 500px;
-}
-
-.w-\[60\%\] {
-  width: 60%;
 }
 
 .w-full {
   width: 100%;
-}
-
-.max-w-\[1536px\] {
-  max-width: 1536px;
-}
-
-.max-w-\[576px\] {
-  max-width: 576px;
-}
-
-.max-w-\[607px\] {
-  max-width: 607px;
-}
-
-.max-w-\[724px\] {
-  max-width: 724px;
 }
 
 .flex-\[40\%\] {
@@ -1137,21 +1125,6 @@ video {
   border-color: rgb(30 30 30 / 0.2);
 }
 
-.bg-\[\#084DA7\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(8 77 167 / var(--tw-bg-opacity, 1));
-}
-
-.bg-\[\#F8FAFB\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(248 250 251 / var(--tw-bg-opacity, 1));
-}
-
-.bg-\[\#FEEA94\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(254 234 148 / var(--tw-bg-opacity, 1));
-}
-
 .bg-accent {
   --tw-bg-opacity: 1;
   background-color: rgb(255 169 207 / var(--tw-bg-opacity, 1));
@@ -1169,6 +1142,16 @@ video {
 
 .bg-black\/10 {
   background-color: rgb(0 0 0 / 0.1);
+}
+
+.bg-childcare_card {
+  --tw-bg-opacity: 1;
+  background-color: rgb(248 250 251 / var(--tw-bg-opacity, 1));
+}
+
+.bg-feedbacks_bg {
+  --tw-bg-opacity: 1;
+  background-color: rgb(8 77 167 / var(--tw-bg-opacity, 1));
 }
 
 .bg-primary_black {
@@ -1471,8 +1454,8 @@ video {
     display: none;
   }
 
-  .md\:w-\[240px\] {
-    width: 240px;
+  .md\:w-60 {
+    width: 15rem;
   }
 
   .md\:translate-x-0 {
@@ -1554,16 +1537,16 @@ video {
     display: none;
   }
 
+  .lg\:w-600 {
+    width: 600px;
+  }
+
+  .lg\:w-64 {
+    width: 16rem;
+  }
+
   .lg\:w-\[167px\] {
     width: 167px;
-  }
-
-  .lg\:w-\[253px\] {
-    width: 253px;
-  }
-
-  .lg\:w-\[600px\] {
-    width: 600px;
   }
 
   .lg\:w-full {
@@ -1667,7 +1650,7 @@ video {
     line-height: 120%;
   }
 
-  .lg\:leading-\[80px\] {
+  .lg\:leading-80 {
     line-height: 80px;
   }
 
@@ -1689,7 +1672,7 @@ video {
     left: 0px;
   }
 
-  .xxl\:w-\[800px\] {
+  .xxl\:w-800 {
     width: 800px;
   }
 

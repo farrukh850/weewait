@@ -8,3 +8,21 @@
     max-width: 1168px;
     margin: 0 auto;
 }
+.testimonials-container{
+    max-width: 1536px;
+    margin: 0 auto;
+}
+.single-feedback{
+    max-width: 724px;
+}
+.reviewer-photo{
+    width: 120px;
+    height: 120px;
+}
+.reviewer-photo-big{
+    width: 500px;
+    height: 500px;
+}
+.paragraph_width{
+    max-width: 576px;
+}

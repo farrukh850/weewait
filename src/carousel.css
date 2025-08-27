@@ -70,6 +70,7 @@
 .testimonial-prev,
 .testimonial-next {
     transition: all 0.3s ease;
+    background-color: #FEEA94;
 }
 
 .testimonial-prev svg path,

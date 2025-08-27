@@ -9,7 +9,9 @@ module.exports = {
         accent: '#FFA9CF',
         accent_hover: '#F27EB1',
         accent_skyblue: '#7DADFE',
-        bg_grey: '#F8FAFB'
+        bg_grey: '#F8FAFB',
+        'childcare_card': '#F8FAFB',
+        'feedbacks_bg': '#084DA7'
       },
       fontFamily: {
         'figtree': ['Figtree', 'sans-serif'],
@@ -17,6 +19,7 @@ module.exports = {
       },
       lineHeight: {
         'extra-loose': '110px',
+        '80': '80px',
         '120': '120%',
         '110': '110%',
       },
@@ -32,6 +35,9 @@ module.exports = {
       },
       width: {
         '8xl': '1760px',
+        'daycare_btn_width': '248px',
+        '600': '600px',
+        '800': '800px',
       },
       screens: {
         'xxl': '1600px',

@@ -11,9 +11,9 @@
     { "source": "/how-it-works", "destination": "/how-it-works.html" },
     { "source": "/contact", "destination": "/contact.html" },
     { "source": "/thank-you", "destination": "/thank-you.html" },
-    { "source": "/404", "destination": "/404.html" },
     { "source": "/terms-daycare", "destination": "/terms-daycare.html" },
     { "source": "/terms-parents", "destination": "/terms-parents.html" },
-    { "source": "/(.*)", "destination": "/index.html" }
+    { "source": "/404", "destination": "/404.html" },
+    { "source": "/:path*", "destination": "/index.html" }
   ]
 }

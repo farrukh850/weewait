@@ -1,13 +1,11 @@
 .container{
-    max-width: 1760px !important;
+    max-width: 1400px !important;
     margin: 0 auto;
     width: 100%;
-    padding: 0 16px;
 }
 .container-plans{
     max-width: 1316px;
     margin: 0 auto;
-    padding: 0 16px;
 }
 .parents-container{
     max-width: 1168px;
@@ -56,5 +54,8 @@
         width: 100%;
         left: 0;
         right: 0;
+    }
+    .container, .container-plans{
+        padding: 0 16px;
     }
 }

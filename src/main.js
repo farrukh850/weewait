@@ -148,7 +148,6 @@ function setupPlanDurationButtons() {
         element.textContent = element.getAttribute(`data-${pricingType}`);
       }
     });
-
     // Update original (crossed-out) prices and toggle visibility
     originalPriceElements.forEach(element => {
       if (element.hasAttribute(`data-${pricingType}`)) {

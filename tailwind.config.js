@@ -15,7 +15,8 @@ export default {
         accent_yellow: '#FEEA94',
         bg_grey: '#F8FAFB',
         'childcare_card': '#F8FAFB',
-        'feedbacks_bg': '#084DA7'
+        'feedbacks_bg': '#084DA7',
+        'input_bg': '#E7F2F8',
       },
       fontFamily: {
         'figtree': ['Figtree', 'sans-serif'],
@@ -43,6 +44,7 @@ export default {
         'daycare_btn_width': '248px',
         '600': '600px',
         '800': '800px',
+        '1168': '1168px',
       },
       screens: {
         'xxl': '1600px',

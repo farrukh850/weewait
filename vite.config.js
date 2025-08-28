@@ -15,6 +15,10 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: resolve(__dirname, 'index.html'),
+        pricing: resolve(__dirname, 'pricing.html'),
+        faq: resolve(__dirname, 'faq.html'),
+        contact: resolve(__dirname, 'contact.html'),
+        howItWorks: resolve(__dirname, 'how-it-works.html')
       },
     },
     // Ensure CSS is processed and extracted

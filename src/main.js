@@ -121,10 +121,14 @@ function setupPlanDurationButtons() {
           if (index === 1) {
             saveDiscountSpan.classList.add('bg-primary_black');
             saveDiscountSpan.classList.remove('bg-accent_yellow');
+            saveDiscountSpan.classList.remove('text-black');
+            saveDiscountSpan.classList.add('text-white');
             updatePricing('yearly');
           } else {
             // If the first button (3 month) is active
             saveDiscountSpan.classList.add('bg-accent_yellow');
+            saveDiscountSpan.classList.add('text-black');
+            saveDiscountSpan.classList.remove('text-white');
             saveDiscountSpan.classList.remove('bg-primary_black');
             updatePricing('monthly');
           }

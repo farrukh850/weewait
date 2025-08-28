@@ -96,15 +96,14 @@ function setupAccordion() {
 function setupPlanDurationButtons() {
   const planDurationBtns = document.querySelectorAll('.plan-duration-btn');
   const saveDiscountSpan = document.querySelector('.save-discount');
+  const priceDisplayElements = document.querySelectorAll('[data-monthly][data-yearly]');
+  const originalPriceElements = document.querySelectorAll('.original-price');
 
   if (planDurationBtns.length) {
-    // Set initial state for the span - should be bg-primary_black since yearly button is active by default
-    if (saveDiscountSpan) {
-      saveDiscountSpan.classList.add('bg-primary_black');
-      saveDiscountSpan.classList.remove('bg-accent_yellow');
-    }
+    // Set initial state - yearly pricing is shown by default (second button is active)
+    updatePricing('yearly');
 
-    planDurationBtns.forEach(btn => {
+    planDurationBtns.forEach((btn, index) => {
       btn.addEventListener('click', () => {
         // Remove bg-accent class from all buttons
         planDurationBtns.forEach(b => {
@@ -119,17 +118,15 @@ function setupPlanDurationButtons() {
         // Toggle the save-discount span background color based on which button is active
         if (saveDiscountSpan) {
           // If the second button (Yearly) is active
-          if (btn === planDurationBtns[1]) {
+          if (index === 1) {
             saveDiscountSpan.classList.add('bg-primary_black');
-            saveDiscountSpan.classList.remove('text-black');
-            saveDiscountSpan.classList.add('text-white');
             saveDiscountSpan.classList.remove('bg-accent_yellow');
+            updatePricing('yearly');
           } else {
             // If the first button (3 month) is active
             saveDiscountSpan.classList.add('bg-accent_yellow');
-            saveDiscountSpan.classList.add('text-black');
-            saveDiscountSpan.classList.remove('text-white');
             saveDiscountSpan.classList.remove('bg-primary_black');
+            updatePricing('monthly');
           }
         }
       });
@@ -138,6 +135,23 @@ function setupPlanDurationButtons() {
     return true;
   }
   return false;
+
+  // Helper function to update pricing based on selected plan duration
+  function updatePricing(pricingType) {
+    // Update all elements with price data attributes
+    priceDisplayElements.forEach(element => {
+      if (element.hasAttribute(`data-${pricingType}`)) {
+        element.textContent = element.getAttribute(`data-${pricingType}`);
+      }
+    });
+
+    // Update original (crossed-out) prices
+    originalPriceElements.forEach(element => {
+      if (element.hasAttribute(`data-${pricingType}`)) {
+        element.textContent = element.getAttribute(`data-${pricingType}`);
+      }
+    });
+  }
 }
 
 // Wait for jQuery to load first (jQuery is loaded from CDN in the HTML)

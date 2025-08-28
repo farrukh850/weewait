@@ -145,10 +145,16 @@ function setupPlanDurationButtons() {
       }
     });
 
-    // Update original (crossed-out) prices
+    // Update original (crossed-out) prices and toggle visibility
     originalPriceElements.forEach(element => {
       if (element.hasAttribute(`data-${pricingType}`)) {
         element.textContent = element.getAttribute(`data-${pricingType}`);
+        // Show for yearly, hide for monthly
+        if (pricingType === 'yearly') {
+          element.classList.remove('hidden');
+        } else {
+          element.classList.add('hidden');
+        }
       }
     });
   }

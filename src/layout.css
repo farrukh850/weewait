@@ -43,6 +43,16 @@
     #main-nav ul li a{
         font-size: 15px;
     }
+    .container, .container-plans{
+        padding-right: 16px !important;
+        padding-left: 16px !important;
+    }
+}
+@media (max-width: 1400px) {
+    .container, .container-plans{
+        padding-right: 16px !important;
+        padding-left: 16px !important;
+    }
     .plan_card_height{
         min-height: 100%;
         height: 100%;
@@ -54,8 +64,5 @@
         width: 100%;
         left: 0;
         right: 0;
-    }
-    .container, .container-plans{
-        padding: 0 16px;
     }
 }

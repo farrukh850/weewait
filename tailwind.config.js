@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
-    "./index.html",
+    "./*.html",
     "./src/**/*.{js,ts,jsx,tsx,css}",
   ],
   theme: {
@@ -12,6 +12,7 @@ export default {
         accent: '#FFA9CF',
         accent_hover: '#F27EB1',
         accent_skyblue: '#7DADFE',
+        accent_yellow: '#FEEA94',
         bg_grey: '#F8FAFB',
         'childcare_card': '#F8FAFB',
         'feedbacks_bg': '#084DA7'
@@ -35,6 +36,7 @@ export default {
       height: {
         '736': '736px',
         '240': '240px',
+        'plan_card_height': '697px'
       },
       width: {
         '8xl': '1760px',
@@ -47,6 +49,9 @@ export default {
       },
       borderRadius: {
         '32': '32px',
+      },
+      borderWidth: {
+        '3': '3px',
       },
     },
   },

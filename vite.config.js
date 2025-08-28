@@ -22,6 +22,7 @@ export default defineConfig({
         thankYou: resolve(__dirname, 'thank-you.html'),
         termsDaycare: resolve(__dirname, 'terms-daycare.html'),
         termsParents: resolve(__dirname, 'terms-parents.html'),
+        about: resolve(__dirname, 'about.html'),
         notFound: resolve(__dirname, '404.html')
       },
     },

@@ -72,7 +72,6 @@
     transition: all 0.3s ease;
     background-color: #FEEA94;
 }
-
 .testimonial-prev svg path,
 .testimonial-next svg path {
     transition: stroke 0.3s ease;

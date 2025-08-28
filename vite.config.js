@@ -18,7 +18,11 @@ export default defineConfig({
         pricing: resolve(__dirname, 'pricing.html'),
         faq: resolve(__dirname, 'faq.html'),
         contact: resolve(__dirname, 'contact.html'),
-        howItWorks: resolve(__dirname, 'how-it-works.html')
+        howItWorks: resolve(__dirname, 'how-it-works.html'),
+        thankYou: resolve(__dirname, 'thank-you.html'),
+        termsDaycare: resolve(__dirname, 'terms-daycare.html'),
+        termsParents: resolve(__dirname, 'terms-parents.html'),
+        notFound: resolve(__dirname, '404.html')
       },
     },
     // Ensure CSS is processed and extracted

@@ -54,6 +54,12 @@
 .filter-dropdown{
     z-index: 1000;
 }
+.flex-40{
+    flex: 40%;
+}
+.flex-60{
+    flex: 60%;
+}
 .bg-childcare_card_daycare{
     min-height: 408px;
 }
@@ -63,6 +69,9 @@
 .map-view-container{
     padding-left: calc((100% - 1400px) / 2);
     max-width: 100%;
+}
+footer{
+    padding-top: 40px;
 }
 @media (max-width: 1000px) {
     #main-nav ul{

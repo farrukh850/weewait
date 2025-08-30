@@ -32,6 +32,22 @@
   width: 100%;
 }
 
+/* Safari height fix for mobile devices */
+#filter-popup-mobile .popup-content {
+  /* Fix for Safari viewport height issue on mobile */
+  height: 95vh; /* Fallback for non-Safari browsers */
+  height: -webkit-fill-available; /* For Safari on iOS */
+  max-height: -webkit-fill-available; /* Ensure it doesn't exceed viewport */
+}
+
+/* This targets Safari only */
+@supports (-webkit-touch-callout: none) {
+  #filter-popup-mobile .popup-content {
+    min-height: -webkit-fill-available;
+    height: -webkit-fill-available;
+  }
+}
+
 .popup-overlay.active .popup-content {
   transform: translateY(0);
 }

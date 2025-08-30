@@ -36,12 +36,12 @@
   transform: translateY(0);
 }
 
-.popup-close {
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  cursor: pointer;
-}
+/*.popup-close {*/
+/*  position: absolute;*/
+/*  top: 16px;*/
+/*  right: 16px;*/
+/*  cursor: pointer;*/
+/*}*/
 
 /* Toast styles */
 /*.toast-block {*/

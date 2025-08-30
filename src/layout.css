@@ -90,8 +90,8 @@
         height: 100% !important;
     }
     .popup-overlay {
-        justify-content: flex-end;
-        align-items: flex-end;
+        justify-content: flex-end !important;
+        align-items: flex-end !important;
     }
     .map-view-container{
         padding: 0 16px !important;

@@ -23,7 +23,10 @@ export default defineConfig({
         termsDaycare: resolve(__dirname, 'terms-daycare.html'),
         termsParents: resolve(__dirname, 'terms-parents.html'),
         about: resolve(__dirname, 'about.html'),
-        notFound: resolve(__dirname, '404.html')
+        notFound: resolve(__dirname, '404.html'),
+        daycareListView: resolve(__dirname, 'daycare-list-view.html'),
+        daycareMapView: resolve(__dirname, 'daycare-map-view.html'),
+        daycareMapViewSidebarHide: resolve(__dirname, 'daycare-map-view-sidebar-hide.html')
       },
     },
     // Ensure CSS is processed and extracted

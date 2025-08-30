@@ -15,6 +15,9 @@
     { "source": "/terms-parents", "destination": "/terms-parents.html" },
     { "source": "/404", "destination": "/404.html" },
     { "source": "/about", "destination": "/about.html" },
+    { "source": "/daycare-list-view", "destination": "/daycare-list-view.html" },
+    { "source": "/daycare-map-view", "destination": "/daycare-map-view.html" },
+    { "source": "/daycare-map-view-sidebar-hide", "destination": "/daycare-map-view-sidebar-hide.html" },
     { "source": "/:path*", "destination": "/index.html" }
   ]
 }

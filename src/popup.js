@@ -5,6 +5,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Initialize toast functionality for Apply Now buttons
   initToastForApplyButtons();
+
+  // Initialize mobile popups
+  initMobilePopups();
 });
 
 function initPopup() {
@@ -193,130 +196,145 @@ function hideToast() {
   }, 300);
 }
 
-// Mobile filter popup toggle functionality
-document.addEventListener('DOMContentLoaded', function() {
-  const filterMobileBtn = document.getElementById('filter-mobile-btn');
-  const filterPopupMobile = document.getElementById('filter-popup-mobile');
+// Function to initialize all mobile popups
+function initMobilePopups() {
+  initMobilePopup('filter-mobile-btn', 'filter-popup-mobile');
+  initMobilePopup('sort-mobile-btn', 'sort-popup-mobile');
+  initMobilePopup('search-mobile-btn', 'search-popup-mobile');
 
-  if (filterMobileBtn && filterPopupMobile) {
-    // Add click event to mobile filter button
-    filterMobileBtn.addEventListener('click', function(e) {
+  // Initialize scroll fade effect for all mobile popups
+  initScrollFadeEffect();
+}
+
+// Enhanced function to initialize mobile popups with better touch handling
+function initMobilePopup(buttonId, popupId) {
+  const button = document.getElementById(buttonId);
+  const popup = document.getElementById(popupId);
+
+  if (!button || !popup) return;
+
+  // Add touchstart and click events for better mobile responsiveness
+  button.addEventListener('click', function(e) {
+    e.preventDefault();
+    e.stopPropagation(); // Prevent event bubbling
+    togglePopup(popup);
+  });
+
+  // Use touchstart for faster response on mobile
+  button.addEventListener('touchstart', function(e) {
+    e.preventDefault();
+    togglePopup(popup);
+  }, { passive: false });
+
+  // Close buttons inside the popup
+  const closeButtons = popup.querySelectorAll('.popup-close');
+  closeButtons.forEach(closeBtn => {
+    closeBtn.addEventListener('click', function(e) {
       e.preventDefault();
-      filterPopupMobile.classList.toggle('active');
-      document.body.style.overflow = filterPopupMobile.classList.contains('active') ? 'hidden' : '';
+      e.stopPropagation();
+      closePopupMobile(popup);
     });
 
-    // Close popup when clicking the close button inside filter-popup-mobile
-    const closeButtons = filterPopupMobile.querySelectorAll('.popup-close');
-    closeButtons.forEach(button => {
-      button.addEventListener('click', function(e) {
-        e.preventDefault();
-        filterPopupMobile.classList.remove('active');
-        document.body.style.overflow = '';
-      });
-    });
-
-    // Close popup when clicking on the overlay (outside of popup content)
-    filterPopupMobile.addEventListener('click', function(e) {
-      if (e.target === this) {
-        filterPopupMobile.classList.remove('active');
-        document.body.style.overflow = '';
-      }
-    });
-  }
-
-  // Sort popup mobile toggle functionality
-  const sortMobileBtn = document.getElementById('sort-mobile-btn');
-  const sortPopupMobile = document.getElementById('sort-popup-mobile');
-
-  if (sortMobileBtn && sortPopupMobile) {
-    // Add click event to mobile sort button
-    sortMobileBtn.addEventListener('click', function(e) {
+    closeBtn.addEventListener('touchstart', function(e) {
       e.preventDefault();
-      sortPopupMobile.classList.toggle('active');
-      document.body.style.overflow = sortPopupMobile.classList.contains('active') ? 'hidden' : '';
-    });
+      closePopupMobile(popup);
+    }, { passive: false });
+  });
 
-    // Close popup when clicking the close button inside sort-popup-mobile
-    const closeButtons = sortPopupMobile.querySelectorAll('.popup-close');
-    closeButtons.forEach(button => {
-      button.addEventListener('click', function(e) {
-        e.preventDefault();
-        sortPopupMobile.classList.remove('active');
-        document.body.style.overflow = '';
-      });
-    });
-
-    // Close popup when clicking on the overlay (outside of popup content)
-    sortPopupMobile.addEventListener('click', function(e) {
-      if (e.target === this) {
-        sortPopupMobile.classList.remove('active');
-        document.body.style.overflow = '';
-      }
-    });
-  }
-
-  // Search popup mobile toggle functionality
-  const searchMobileBtn = document.getElementById('search-mobile-btn');
-  const searchPopupMobile = document.getElementById('search-popup-mobile');
-
-  if (searchMobileBtn && searchPopupMobile) {
-    // Add click event to mobile search button
-    searchMobileBtn.addEventListener('click', function(e) {
-      e.preventDefault();
-      searchPopupMobile.classList.toggle('active');
-      document.body.style.overflow = searchPopupMobile.classList.contains('active') ? 'hidden' : '';
-    });
-
-    // Close popup when clicking the close button inside search-popup-mobile
-    const closeButtons = searchPopupMobile.querySelectorAll('.popup-close');
-    closeButtons.forEach(button => {
-      button.addEventListener('click', function(e) {
-        e.preventDefault();
-        searchPopupMobile.classList.remove('active');
-        document.body.style.overflow = '';
-      });
-    });
-
-    // Close popup when clicking on the overlay (outside of popup content)
-    searchPopupMobile.addEventListener('click', function(e) {
-      if (e.target === this) {
-        searchPopupMobile.classList.remove('active');
-        document.body.style.overflow = '';
-      }
-    });
-  }
-
-  // Fade effect for scrollable containers
-  const scrollableContainers = document.querySelectorAll('.overflow-y-auto');
-  scrollableContainers.forEach(container => {
-    const fadeElement = container.querySelector('#scroll-fade');
-
-    if (fadeElement) {
-      // Check on page load
-      checkScrollPosition(container, fadeElement);
-
-      // Check on scroll
-      container.addEventListener('scroll', function() {
-        checkScrollPosition(container, fadeElement);
-      });
-
-      // Check on window resize
-      window.addEventListener('resize', function() {
-        checkScrollPosition(container, fadeElement);
-      });
+  // Close when clicking outside popup content
+  popup.addEventListener('click', function(e) {
+    if (e.target === popup) {
+      closePopupMobile(popup);
     }
   });
 
-  function checkScrollPosition(container, fadeElement) {
-    // Check if user has scrolled to the bottom
-    const isAtBottom = container.scrollHeight - container.scrollTop <= container.clientHeight + 5; // 5px tolerance
+  // Handle apply buttons inside mobile popups
+  const applyButtons = popup.querySelectorAll('.apply-now-button');
+  applyButtons.forEach(applyBtn => {
+    applyBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      closePopupMobile(popup);
+      // Show toast notification if needed
+      showToast();
+    });
+  });
+}
 
-    // Toggle fade visibility
-    if (isAtBottom) {
-      fadeElement.style.opacity = '0';
-    } else {
-      fadeElement.style.opacity = '1';
-    }
+// Toggle mobile popup visibility
+function togglePopup(popup) {
+  if (popup.classList.contains('active')) {
+    closePopupMobile(popup);
+  } else {
+    openPopupMobile(popup);
   }
-});
+}
+
+// Open mobile popup with enhanced animation
+function openPopupMobile(popup) {
+  // Close any other open popups first
+  document.querySelectorAll('.popup-overlay.active').forEach(openPopup => {
+    if (openPopup !== popup) {
+      closePopupMobile(openPopup);
+    }
+  });
+
+  // Add active class to show the popup
+  popup.classList.add('active');
+
+  // Prevent background scrolling
+  document.body.style.overflow = 'hidden';
+
+  // Force browser reflow to ensure animations work properly
+  void popup.offsetWidth;
+}
+
+// Close mobile popup with enhanced animation
+function closePopupMobile(popup) {
+  popup.classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+// Initialize scroll fade effect for scrollable containers
+function initScrollFadeEffect() {
+  const scrollableContainers = document.querySelectorAll('.overflow-y-auto');
+
+  scrollableContainers.forEach(container => {
+    // Check if a fade element exists, if not create one
+    let fadeElement = container.querySelector('#scroll-fade');
+
+    if (!fadeElement) {
+      fadeElement = document.createElement('div');
+      fadeElement.id = 'scroll-fade';
+      container.appendChild(fadeElement);
+    }
+
+    // Initial check
+    checkScrollPosition(container, fadeElement);
+
+    // Check on scroll
+    container.addEventListener('scroll', function() {
+      checkScrollPosition(container, fadeElement);
+    });
+
+    // Check on window resize
+    window.addEventListener('resize', function() {
+      checkScrollPosition(container, fadeElement);
+    });
+  });
+}
+
+function checkScrollPosition(container, fadeElement) {
+  // Check if user has scrolled to the bottom
+  const isAtBottom = container.scrollHeight - container.scrollTop <= container.clientHeight + 5; // 5px tolerance
+
+  // Toggle fade visibility
+  if (isAtBottom) {
+    fadeElement.style.opacity = '0';
+  } else {
+    fadeElement.style.opacity = '1';
+  }
+
+  // Position the fade element at the bottom of the container
+  fadeElement.style.bottom = '0';
+  fadeElement.style.position = 'absolute';
+}

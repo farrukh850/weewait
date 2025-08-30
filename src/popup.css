@@ -9,10 +9,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 50;
+  z-index: 9999; /* Increased z-index to ensure visibility */
   opacity: 0;
   visibility: hidden;
   transition: all 0.3s ease;
+  -webkit-transition: all 0.3s ease; /* For Chrome/Safari */
 }
 
 .popup-overlay.active {
@@ -28,12 +29,17 @@
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
   transform: translateY(-20px);
   transition: all 0.3s ease;
+  -webkit-transition: all 0.3s ease; /* For Chrome/Safari */
   max-width: 560px;
   width: 100%;
+  margin: 0 10px; /* Added margin for mobile */
+  overflow-y: auto; /* Enable scrolling */
+  max-height: 90vh; /* Limit height on mobile */
 }
 
 .popup-overlay.active .popup-content {
   transform: translateY(0);
+  -webkit-transform: translateY(0); /* For Chrome/Safari */
 }
 
 .popup-close {
@@ -41,8 +47,55 @@
   top: 16px;
   right: 16px;
   cursor: pointer;
+  z-index: 10; /* Ensure clickability */
+  padding: 5px; /* Larger touch target */
 }
 
 .toast-block em {
   transition: width 5s linear;
+  -webkit-transition: width 5s linear; /* For Chrome/Safari */
+}
+
+/* Mobile popup specific styles */
+@media (max-width: 768px) {
+  #filter-popup-mobile .popup-content,
+  #sort-popup-mobile .popup-content,
+  #search-popup-mobile .popup-content {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    max-width: 100%;
+    margin: 0;
+    border-radius: 32px 32px 0 0;
+    transform: translateY(100%);
+    -webkit-transform: translateY(100%);
+  }
+
+  #filter-popup-mobile.active .popup-content,
+  #sort-popup-mobile.active .popup-content,
+  #search-popup-mobile.active .popup-content {
+    transform: translateY(0);
+    -webkit-transform: translateY(0);
+  }
+
+  /* Scrollable area with fade effect */
+  .overflow-y-auto {
+    position: relative;
+    max-height: 70vh;
+  }
+
+  #scroll-fade {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 30px;
+    background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,1));
+    pointer-events: none;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+    -webkit-transition: opacity 0.3s ease;
+    z-index: 1;
+  }
 }

@@ -37,7 +37,9 @@ export default {
       height: {
         '736': '736px',
         '240': '240px',
-        'plan_card_height': '697px'
+        '880': '880px',
+        'plan_card_height': '697px',
+        '90%': '90%'
       },
       width: {
         '8xl': '1760px',
@@ -45,6 +47,8 @@ export default {
         '600': '600px',
         '800': '800px',
         '1168': '1168px',
+        'toast_width': '428px',
+        '240': '240px',
       },
       screens: {
         'xxl': '1600px',

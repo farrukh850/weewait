@@ -200,12 +200,12 @@ document.addEventListener('DOMContentLoaded', function() {
       prevArrow: '<button type="button" class="slick-prev hidden"><span class="carousel-arrow carousel-arrow-prev"></span></button>',
       nextArrow: '<button type="button" class="slick-next"><span class="carousel-arrow carousel-arrow-next"></span></button>',
       responsive: [
-          {
-              breakpoint: 1600,
-              settings: {
-                  slidesToShow: 3
-              }
-          },
+        {
+          breakpoint: 1600,
+          settings: {
+            slidesToShow: 3
+          }
+        },
         {
           breakpoint: 1440,
           settings: {
@@ -357,4 +357,122 @@ document.addEventListener('DOMContentLoaded', function() {
     prevArrow: $('.testimonial-prev'),
     nextArrow: $('.testimonial-next'),
   });
+});
+
+
+//Filter Javascript
+// Filter dropdowns functionality
+function setupFilterDropdowns() {
+  const filterButtons = document.querySelectorAll('.filter-button');
+
+  if (filterButtons.length) {
+    // First, hide all dropdowns initially with opacity and height
+    filterButtons.forEach(button => {
+      const dropdown = button.querySelector('.filter-dropdown');
+      const caretIcon = button.querySelector('img[src*="caret"]'); // Get the caret icon
+
+      if (dropdown) {
+        dropdown.style.opacity = '0';
+        dropdown.style.maxHeight = '0';
+        dropdown.style.overflow = 'hidden';
+        dropdown.style.transition = 'opacity 0.3s ease, max-height 0.3s ease';
+        dropdown.style.pointerEvents = 'none'; // Disable interaction when hidden
+      }
+
+      // Set initial caret rotation
+      if (caretIcon) {
+        caretIcon.style.transform = 'rotate(0deg)';
+        caretIcon.style.transition = 'transform 0.3s ease';
+      }
+    });
+
+    // Add click event listeners to each filter button
+    filterButtons.forEach(button => {
+      button.addEventListener('click', function(e) {
+        const dropdown = this.querySelector('.filter-dropdown');
+        const caretIcon = this.querySelector('img[src*="caret"]'); // Get the caret icon
+
+        if (!dropdown) return;
+
+        // Get all other dropdowns to close them
+        const allDropdowns = document.querySelectorAll('.filter-dropdown');
+        const allButtons = document.querySelectorAll('.filter-button');
+
+        // Toggle current dropdown
+        const isVisible = dropdown.style.opacity === '1';
+
+        // First close all dropdowns and reset all carets
+        allDropdowns.forEach(item => {
+          if (item !== dropdown) {
+            item.style.opacity = '0';
+            item.style.maxHeight = '0';
+            item.style.pointerEvents = 'none';
+          }
+        });
+
+        allButtons.forEach(btn => {
+          if (btn !== button) {
+            const otherCaret = btn.querySelector('img[src*="caret"]');
+            if (otherCaret) {
+              otherCaret.style.transform = 'rotate(0deg)';
+            }
+          }
+        });
+
+        // Then toggle the current dropdown and rotate caret
+        if (isVisible) {
+          dropdown.style.opacity = '0';
+          dropdown.style.maxHeight = '0';
+          dropdown.style.pointerEvents = 'none';
+
+          // Rotate caret back
+          if (caretIcon) {
+            caretIcon.style.transform = 'rotate(0deg)';
+          }
+        } else {
+          dropdown.style.opacity = '1';
+          dropdown.style.maxHeight = dropdown.scrollHeight + 'px';
+          dropdown.style.pointerEvents = 'auto';
+
+          // Rotate caret
+          if (caretIcon) {
+            caretIcon.style.transform = 'rotate(180deg)';
+          }
+        }
+
+        // Prevent the event from bubbling up to document
+        e.stopPropagation();
+      });
+    });
+
+    // Close dropdowns when clicking outside
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('.filter-button')) {
+        const allDropdowns = document.querySelectorAll('.filter-dropdown');
+        const allButtons = document.querySelectorAll('.filter-button');
+
+        allDropdowns.forEach(dropdown => {
+          dropdown.style.opacity = '0';
+          dropdown.style.maxHeight = '0';
+          dropdown.style.pointerEvents = 'none';
+        });
+
+        // Reset all carets
+        allButtons.forEach(btn => {
+          const caret = btn.querySelector('img[src*="caret"]');
+          if (caret) {
+            caret.style.transform = 'rotate(0deg)';
+          }
+        });
+      }
+    });
+
+    return true;
+  }
+  return false;
+}
+
+// Call the setup function when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+  setupFilterDropdowns();
 });

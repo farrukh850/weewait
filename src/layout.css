@@ -22,6 +22,9 @@
     width: 120px;
     height: 120px;
 }
+#child-popup-mobile{
+    display: none;
+}
 .reviewer-photo-big{
     width: 500px;
     height: 500px;
@@ -48,6 +51,19 @@
 .about-family-image{
     height: 576px;
 }
+.filter-dropdown{
+    z-index: 1000;
+}
+.bg-childcare_card_daycare{
+    min-height: 408px;
+}
+.daycare-card-height{
+    height: 168px;
+}
+.map-view-container{
+    padding-left: calc((100% - 1400px) / 2);
+    max-width: 100%;
+}
 @media (max-width: 1000px) {
     #main-nav ul{
         gap: 15px;
@@ -65,6 +81,23 @@
     }
     .about-family-image{
         height: 412px;
+    }
+    .bg-childcare_card_daycare{
+        min-height: 100% !important;
+        height: 100% !important;
+    }
+    .daycare-card-height{
+        height: 100% !important;
+    }
+    .popup-overlay {
+        justify-content: flex-end;
+        align-items: flex-end;
+    }
+    .map-view-container{
+        padding: 0 16px !important;
+    }
+    #child-popup-mobile{
+        display: flex;
     }
 }
 @media (max-width: 1400px) {

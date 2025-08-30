@@ -8,6 +8,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Initialize mobile popups
   initMobilePopups();
+
+  // Initialize range slider
+  initRangeSlider();
 });
 
 function initPopup() {
@@ -337,4 +340,180 @@ function checkScrollPosition(container, fadeElement) {
   // Position the fade element at the bottom of the container
   fadeElement.style.bottom = '0';
   fadeElement.style.position = 'absolute';
+}
+
+// Range Slider functionality
+function initRangeSlider() {
+  const rangeSliders = document.querySelectorAll('.range-slider-min, .range-slider-max');
+
+  if (rangeSliders.length === 0) return;
+
+  let isDragging = false;
+  let activeHandle = null;
+  let startX, startLeft;
+  const sliderColors = ['#FFA9CF']; // Different blue shades
+
+  // Initialize the slider positions and fill elements
+  const sliderContainers = document.querySelectorAll('.range-slider-min');
+  sliderContainers.forEach(minHandle => {
+    const container = minHandle.closest('span');
+    const maxHandle = container.querySelector('.range-slider-max');
+    const fillElement = container.querySelector('.range-slider-fill');
+
+    if (fillElement) {
+      // Set initial fill position between the two handles
+      const minPos = minHandle.offsetLeft + (minHandle.offsetWidth / 2);
+      const maxPos = maxHandle.offsetLeft;
+      fillElement.style.left = `${minPos}px`;
+      fillElement.style.width = `${maxPos - minPos}px`;
+      fillElement.style.backgroundColor = sliderColors[2]; // Middle color by default
+    }
+  });
+
+  // Prevent filter dropdown from closing when interacting with the slider
+  const filterButtons = document.querySelectorAll('.filter-button');
+  filterButtons.forEach(button => {
+    const dropdown = button.querySelector('.filter-dropdown');
+    if (dropdown) {
+      dropdown.addEventListener('click', function(e) {
+        e.stopPropagation(); // Prevent event from bubbling up
+      });
+    }
+  });
+
+  rangeSliders.forEach(handle => {
+    handle.addEventListener('mousedown', startDrag);
+    handle.addEventListener('touchstart', startDrag, { passive: false });
+  });
+
+  document.addEventListener('mousemove', drag);
+  document.addEventListener('touchmove', drag, { passive: false });
+  document.addEventListener('mouseup', stopDrag);
+  document.addEventListener('touchend', stopDrag);
+
+  function startDrag(e) {
+    e.preventDefault();
+    e.stopPropagation(); // Prevent the dropdown from closing
+    isDragging = true;
+    activeHandle = this;
+
+    const slider = activeHandle.closest('span');
+    const rect = slider.getBoundingClientRect();
+
+    startX = e.type === 'touchstart' ? e.touches[0].clientX : e.clientX;
+    startLeft = activeHandle.offsetLeft;
+
+    // Add dragging class for styling
+    activeHandle.classList.add('dragging');
+  }
+
+  function drag(e) {
+    if (!isDragging || !activeHandle) return;
+
+    const slider = activeHandle.closest('span');
+    const rect = slider.getBoundingClientRect();
+    const sliderWidth = rect.width;
+
+    // Calculate new position
+    const clientX = e.type === 'touchmove' ? e.touches[0].clientX : e.clientX;
+    const deltaX = clientX - startX;
+    let newLeft = startLeft + deltaX;
+
+    // Constrain to slider bounds
+    newLeft = Math.max(0, Math.min(newLeft, sliderWidth - activeHandle.offsetWidth));
+
+    // Special handling for min/max handles
+    const position = activeHandle.getAttribute('data-position');
+    const minHandle = slider.querySelector('.range-slider-min');
+    const maxHandle = slider.querySelector('.range-slider-max');
+    const fillElement = slider.querySelector('.range-slider-fill');
+
+    if (position === 'left') {
+      // Don't allow min to go past max
+      const maxLeft = maxHandle.offsetLeft - activeHandle.offsetWidth;
+      newLeft = Math.min(newLeft, maxLeft);
+
+      // Update fill element
+      fillElement.style.left = `${newLeft + activeHandle.offsetWidth / 2}px`;
+      fillElement.style.width = `${maxHandle.offsetLeft - newLeft}px`;
+
+      // Update min value display
+      const percentage = newLeft / sliderWidth;
+      const minValue = Math.round(50 + percentage * 50);
+      const minValueElement = slider.closest('.filter-dropdown').querySelector('.min-value');
+      if (minValueElement) {
+        minValueElement.textContent = `$ ${minValue}`;
+      }
+    } else if (position === 'right') {
+      // Don't allow max to go before min
+      const minLeft = minHandle.offsetLeft + minHandle.offsetWidth;
+      newLeft = Math.max(newLeft, minLeft);
+
+      // Update fill element
+      fillElement.style.width = `${newLeft - minHandle.offsetLeft}px`;
+
+      // Update max value display
+      const percentage = newLeft / sliderWidth;
+      const maxValue = Math.round(50 + percentage * 50);
+      const maxValueElement = slider.closest('.filter-dropdown').querySelector('.max-value');
+      if (maxValueElement) {
+        maxValueElement.textContent = `$ ${maxValue}`;
+      }
+    }
+
+    // Update handle position
+    activeHandle.style.left = `${newLeft}px`;
+
+    // Change background color based on slider position
+    const sliderPercentage = (newLeft / sliderWidth) * 100;
+    const colorIndex = Math.min(Math.floor(sliderPercentage / 20), sliderColors.length - 1);
+    fillElement.style.backgroundColor = sliderColors[colorIndex];
+  }
+
+  function stopDrag(e) {
+    if (!isDragging || !activeHandle) return;
+
+    e.stopPropagation(); // Prevent the dropdown from closing
+
+    isDragging = false;
+    activeHandle.classList.remove('dragging');
+    activeHandle = null;
+
+    // Save final slider state if needed
+    const sliders = document.querySelectorAll('.range-slider-min, .range-slider-max');
+    sliders.forEach(slider => {
+      slider.style.transition = 'none'; // Ensure no animations when releasing
+    });
+  }
+
+  // Handle dropdown closing to clean up slider state
+  document.addEventListener('click', function(e) {
+    const dropdowns = document.querySelectorAll('.filter-dropdown');
+    dropdowns.forEach(dropdown => {
+      if (dropdown.contains(e.target)) return;
+
+      // Reset dragging state when clicking outside
+      isDragging = false;
+      if (activeHandle) {
+        activeHandle.classList.remove('dragging');
+        activeHandle = null;
+      }
+    });
+  });
+
+  // Handle filter button clicks for proper dropdown toggling
+  filterButtons.forEach(button => {
+    button.addEventListener('click', function(e) {
+      e.stopPropagation();
+      const dropdown = this.querySelector('.filter-dropdown');
+      if (dropdown) {
+        // Reset dragging state when toggling dropdown
+        isDragging = false;
+        if (activeHandle) {
+          activeHandle.classList.remove('dragging');
+          activeHandle = null;
+        }
+      }
+    });
+  });
 }

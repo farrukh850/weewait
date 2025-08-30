@@ -366,7 +366,7 @@ function initRangeSlider() {
       const maxPos = maxHandle.offsetLeft;
       fillElement.style.left = `${minPos}px`;
       fillElement.style.width = `${maxPos - minPos}px`;
-      fillElement.style.backgroundColor = sliderColors[2]; // Middle color by default
+      fillElement.style.backgroundColor = sliderColors[0]; // Set color
     }
   });
 
@@ -400,120 +400,114 @@ function initRangeSlider() {
     const slider = activeHandle.closest('span');
     const rect = slider.getBoundingClientRect();
 
-    startX = e.type === 'touchstart' ? e.touches[0].clientX : e.clientX;
+    // Get starting position
+    if (e.type === 'touchstart') {
+      startX = e.touches[0].clientX;
+    } else {
+      startX = e.clientX;
+    }
     startLeft = activeHandle.offsetLeft;
-
-    // Add dragging class for styling
-    activeHandle.classList.add('dragging');
   }
 
   function drag(e) {
     if (!isDragging || !activeHandle) return;
 
-    const slider = activeHandle.closest('span');
-    const rect = slider.getBoundingClientRect();
-    const sliderWidth = rect.width;
+    e.preventDefault();
 
-    // Calculate new position
-    const clientX = e.type === 'touchmove' ? e.touches[0].clientX : e.clientX;
-    const deltaX = clientX - startX;
+    // Calculate the new position
+    let clientX;
+    if (e.type === 'touchmove') {
+      clientX = e.touches[0].clientX;
+    } else {
+      clientX = e.clientX;
+    }
+
+    let deltaX = clientX - startX;
     let newLeft = startLeft + deltaX;
 
-    // Constrain to slider bounds
-    newLeft = Math.max(0, Math.min(newLeft, sliderWidth - activeHandle.offsetWidth));
-
-    // Special handling for min/max handles
-    const position = activeHandle.getAttribute('data-position');
+    const slider = activeHandle.closest('span');
+    const sliderRect = slider.getBoundingClientRect();
     const minHandle = slider.querySelector('.range-slider-min');
     const maxHandle = slider.querySelector('.range-slider-max');
     const fillElement = slider.querySelector('.range-slider-fill');
 
-    if (position === 'left') {
-      // Don't allow min to go past max
-      const maxLeft = maxHandle.offsetLeft - activeHandle.offsetWidth;
-      newLeft = Math.min(newLeft, maxLeft);
+    // Calculate boundaries
+    const minPosition = 0;
+    const maxPosition = slider.offsetWidth - activeHandle.offsetWidth;
 
-      // Update fill element
-      fillElement.style.left = `${newLeft + activeHandle.offsetWidth / 2}px`;
-      fillElement.style.width = `${maxHandle.offsetLeft - newLeft}px`;
+    // Constrain to slider bounds
+    newLeft = Math.max(minPosition, Math.min(newLeft, maxPosition));
 
-      // Update min value display
-      const percentage = newLeft / sliderWidth;
-      const minValue = Math.round(50 + percentage * 50);
-      const minValueElement = slider.closest('.filter-dropdown').querySelector('.min-value');
-      if (minValueElement) {
-        minValueElement.textContent = `$ ${minValue}`;
-      }
-    } else if (position === 'right') {
-      // Don't allow max to go before min
-      const minLeft = minHandle.offsetLeft + minHandle.offsetWidth;
-      newLeft = Math.max(newLeft, minLeft);
-
-      // Update fill element
-      fillElement.style.width = `${newLeft - minHandle.offsetLeft}px`;
-
-      // Update max value display
-      const percentage = newLeft / sliderWidth;
-      const maxValue = Math.round(50 + percentage * 50);
-      const maxValueElement = slider.closest('.filter-dropdown').querySelector('.max-value');
-      if (maxValueElement) {
-        maxValueElement.textContent = `$ ${maxValue}`;
-      }
+    // Additional constraints based on which handle is being dragged
+    if (activeHandle.classList.contains('range-slider-min')) {
+      // Min handle should not go beyond max handle - small gap
+      const maxHandlePos = maxHandle.offsetLeft;
+      newLeft = Math.min(newLeft, maxHandlePos - 10);
+    } else {
+      // Max handle should not go below min handle + small gap
+      const minHandlePos = minHandle.offsetLeft;
+      newLeft = Math.max(newLeft, minHandlePos + 10);
     }
 
     // Update handle position
     activeHandle.style.left = `${newLeft}px`;
 
-    // Change background color based on slider position
-    const sliderPercentage = (newLeft / sliderWidth) * 100;
-    const colorIndex = Math.min(Math.floor(sliderPercentage / 20), sliderColors.length - 1);
-    fillElement.style.backgroundColor = sliderColors[colorIndex];
+    // Update fill element
+    if (fillElement) {
+      const minHandlePos = minHandle.offsetLeft + (minHandle.offsetWidth / 2);
+      const maxHandlePos = maxHandle.offsetLeft + (maxHandle.offsetWidth / 2);
+      fillElement.style.left = `${minHandlePos}px`;
+      fillElement.style.width = `${maxHandlePos - minHandlePos}px`;
+    }
+
+    // Update price values
+    updatePriceValues(slider, minHandle, maxHandle);
   }
 
-  function stopDrag(e) {
-    if (!isDragging || !activeHandle) return;
-
-    e.stopPropagation(); // Prevent the dropdown from closing
-
+  function stopDrag() {
     isDragging = false;
-    activeHandle.classList.remove('dragging');
     activeHandle = null;
-
-    // Save final slider state if needed
-    const sliders = document.querySelectorAll('.range-slider-min, .range-slider-max');
-    sliders.forEach(slider => {
-      slider.style.transition = 'none'; // Ensure no animations when releasing
-    });
   }
 
-  // Handle dropdown closing to clean up slider state
-  document.addEventListener('click', function(e) {
-    const dropdowns = document.querySelectorAll('.filter-dropdown');
-    dropdowns.forEach(dropdown => {
-      if (dropdown.contains(e.target)) return;
+  function updatePriceValues(slider, minHandle, maxHandle) {
+    // Find the nearest parent container that holds the min and max value displays
+    const container = slider.closest('.filter-dropdown, .flex.flex-col.gap-2');
+    if (!container) return;
 
-      // Reset dragging state when clicking outside
-      isDragging = false;
-      if (activeHandle) {
-        activeHandle.classList.remove('dragging');
-        activeHandle = null;
-      }
-    });
-  });
+    // Find min and max value elements
+    const minValueEl = container.querySelector('.min-value');
+    const maxValueEl = container.querySelector('.max-value');
 
-  // Handle filter button clicks for proper dropdown toggling
-  filterButtons.forEach(button => {
-    button.addEventListener('click', function(e) {
-      e.stopPropagation();
-      const dropdown = this.querySelector('.filter-dropdown');
-      if (dropdown) {
-        // Reset dragging state when toggling dropdown
-        isDragging = false;
-        if (activeHandle) {
-          activeHandle.classList.remove('dragging');
-          activeHandle = null;
-        }
-      }
-    });
+    if (!minValueEl || !maxValueEl) return;
+
+    // Calculate percentage of slider position
+    const sliderWidth = slider.offsetWidth - minHandle.offsetWidth;
+    const minPercent = (minHandle.offsetLeft / sliderWidth) * 100;
+    const maxPercent = (maxHandle.offsetLeft / sliderWidth) * 100;
+
+    // Calculate price range from $20 to $200
+    const priceRange = 180; // $200 - $20
+    const minPrice = Math.round(20 + (minPercent / 100) * priceRange);
+    const maxPrice = Math.round(20 + (maxPercent / 100) * priceRange);
+
+    // Update the displayed values
+    minValueEl.textContent = `$ ${minPrice}`;
+    maxValueEl.textContent = `$ ${maxPrice}`;
+
+    // Update fill element width
+    const fillElement = slider.querySelector('.range-slider-fill');
+    if (fillElement) {
+      fillElement.style.width = `${maxPercent - minPercent}%`;
+    }
+  }
+
+  // Initial update of values
+  rangeSliders.forEach(handle => {
+    if (handle.classList.contains('range-slider-min')) {
+      const slider = handle.closest('span');
+      const minHandle = slider.querySelector('.range-slider-min');
+      const maxHandle = slider.querySelector('.range-slider-max');
+      updatePriceValues(slider, minHandle, maxHandle);
+    }
   });
 }
